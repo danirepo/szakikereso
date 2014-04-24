@@ -1,6 +1,6 @@
 <%-- 
-    Document   : test
-    Created on : 2014.04.21., 13:59:47
+    Document   : userRegistrationSuccessView
+    Created on : 2014.04.24., 20:54:38
     Author     : Dani
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Sikeres regisztráció</h1>
     </body>
 </html>
