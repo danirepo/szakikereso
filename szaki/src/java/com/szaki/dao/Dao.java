@@ -5,6 +5,8 @@
  */
 package com.szaki.dao;
 
+import com.szaki.domain.Profession;
+import com.szaki.domain.Szaki;
 import com.szaki.domain.User;
 import java.util.List;
 import javax.sql.DataSource;
@@ -17,11 +19,17 @@ public interface Dao {
 
     public void setDataSource(DataSource dataSource);
 
-    public void create(String firstName, String lastName, String email, String password);
+    public void createUser(String firstName, String lastName, String email, String password);
+
+    public void createSzaki(String[] szakiData);
 
     List<User> select(String selectSql);
 
-    List<User> selectAll();
+    List<User> selectAllUser();
+
+    List<Szaki> selectAllSzaki();
+
+    List<Profession> selectAllProfession();
 
     public void delete(String deleteSql);
 

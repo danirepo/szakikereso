@@ -48,7 +48,7 @@ public class UserRegistrationController extends SimpleFormController {
 
         User user = (User) command;
 
-        dao.create(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
+        dao.createUser(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
 
         ModelAndView mv = new ModelAndView(getSuccessView());
 

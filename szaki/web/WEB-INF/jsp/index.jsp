@@ -1,3 +1,4 @@
+<%@include file="include.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -15,5 +16,7 @@
                 the redirection in</i> <tt>redirect.jsp</tt> <i>to point to the new
                 welcome page and also update the welcome-file setting in</i>
             <tt>web.xml</tt>.</p>
+        <a href="<c:url value="/regisztracio.htm"/>">Regisztráció</a>
+        <a href="<c:url value="/szakiregisztracio.htm" />">Szaki regisztráció</a>
     </body>
 </html>
