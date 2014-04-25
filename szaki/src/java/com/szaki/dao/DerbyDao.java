@@ -89,7 +89,7 @@ public class DerbyDao implements Dao {
     @Override
     public List<User> selectAllUser() {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("select ID, FIRSTNAME, LASTNAME, EMAIL from boss.users", new UserRowMapper());
+        return select.query("select ID, FIRSTNAME, LASTNAME, EMAIL, PASSWORD from boss.users", new UserRowMapper());
     }
 
     /**

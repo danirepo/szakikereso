@@ -26,7 +26,6 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 public class SzakiRegistrationController extends SimpleFormController {
 
     private String[] szakiData;
-    private List<Profession> professions;
     DerbyDao dao = new DerbyDao();
     ModelAndView professionMv;
 
@@ -43,18 +42,22 @@ public class SzakiRegistrationController extends SimpleFormController {
         //a dao adatforrásának megadása
         dao.setDataSource(dataSource);
 
-        professions = dao.selectAllProfession();
-        for (Profession prof : professions) {
-            System.out.println("\n\n");
-            System.out.println(prof.getId() + ", " + prof.getName());
-        }
+        /*professions = dao.selectAllProfession();
+         for (Profession prof : professions) {
+         System.out.println("\n\n");
+         System.out.println(prof.getId() + ", " + prof.getName());
+         }*/
         //professionMv = new ModelAndView("szakiRegistrationView", "profession", professions);
-        
         setCommandClass(Szaki.class);
         setCommandName("szakiRegistration");
-        //setSuccessView("szakiRegistrationSuccessView");
+        setSuccessView("szakiRegistrationSuccessView");
         setFormView("szakiRegistrationView");
+    }
 
+    @Override
+    protected Object formBackingObject(HttpServletRequest request) throws Exception {
+        Szaki szaki = new Szaki();
+        return szaki;
     }
 
 //    @Override
@@ -93,20 +96,30 @@ public class SzakiRegistrationController extends SimpleFormController {
         //ModelAndView mv = new ModelAndView(getSuccessView());
         //Do something...
         //return mv;
-        return new ModelAndView("szkiRegistrationSuccessView", "szaki", szaki);
+        return new ModelAndView("szakiRegistrationSuccessView", "szaki", szaki);
     }
 
-    protected Map professionData(HttpServletRequest request) throws Exception {
-        Map professionRef = new HashMap();
-        List<String> frameworkList = new ArrayList<String>();
-        frameworkList.add("egyes");
-        frameworkList.add("ketets");
-        frameworkList.add("hármas");
-        //profession lista feltöltése a boss.profession táblából
-//        professions.add((Profession) dao.selectAllProfession());
-//        professionRef.put("professionData", professions);
-        professionRef.put("frameworkList", frameworkList);
-        return professionRef;
+    /*protected Map professionData(HttpServletRequest request) throws Exception {
+     Map professionRef = new HashMap();
+     List<String> frameworkList = new ArrayList<String>();
+     frameworkList.add("egyes");
+     frameworkList.add("ketets");
+     frameworkList.add("hármas");
+     //profession lista feltöltése a boss.profession táblából
+     //        professions.add((Profession) dao.selectAllProfession());
+     //        professionRef.put("professionData", professions);
+     professionRef.put("frameworkList", frameworkList);
+     return professionRef;
+     }*/
+    @Override
+    protected Map referenceData(HttpServletRequest request) throws Exception {
+        Map referenceData = new HashMap();
+        List<String> professionList = new ArrayList<String>();
+        professionList.add("egy");
+        professionList.add("ketto");
+        professionList.add("harom");
+        referenceData.put("professionList", professionList);
+        return referenceData;
     }
 
 }

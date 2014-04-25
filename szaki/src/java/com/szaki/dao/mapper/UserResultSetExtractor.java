@@ -20,9 +20,12 @@ public class UserResultSetExtractor implements ResultSetExtractor {
     @Override
     public Object extractData(ResultSet rs) throws SQLException, DataAccessException {
         User user = new User();
+        user.setId(rs.getInt("id"));
         user.setFirstName(rs.getString("firstname"));
         user.setLastName(rs.getString("lastname"));
         user.setEmail(rs.getString("email"));
+        user.setPassword(rs.getString("password"));
+        user.setPassword2(rs.getString("password"));
         return user;
     }
 

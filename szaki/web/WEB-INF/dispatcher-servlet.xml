@@ -16,8 +16,22 @@
     <mvc:resources mapping="/resource/**" location="classpath:/WEB-INF/js/" />
     <mvc:annotation-driven />
     
-    <bean name="/regisztracio.htm" class="com.szaki.controller.UserRegistrationController"/>
-    <bean name="/szakiregisztracio.htm" class="com.szaki.controller.SzakiRegistrationController" />
+    <bean name="/regisztracio.htm" class="com.szaki.controller.UserRegistrationController">
+        <property name="validator">
+            <bean class="com.szaki.validator.UserValidator" />
+        </property>
+    </bean>
+    <!--<bean name="/szakiregisztracio.htm" class="com.szaki.controller.SzakiRegistrationController" />-->
+    <bean name="/szakiregisztracio.htm" class="com.szaki.controller.SzakiRegistrationController">
+        
+    </bean>
+    
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="/WEB-INF/properties/message"></property>
+    </bean>
+
+    
+  
 
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but

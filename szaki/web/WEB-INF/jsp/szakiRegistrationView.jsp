@@ -36,9 +36,7 @@
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="Telefonszám" /><br />
                 </spring:bind>
                 Szakma:
-                <c:forEach items="${profession}" var="prof">
-                    <p><c:out value="${prof.value}"/></p>
-                </c:forEach>
+                <form:checkboxes items="${professionList}" path=""/>
                 Ország:
                 <spring:bind path="country">
                     <select name="${status.expression}">
