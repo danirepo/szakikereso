@@ -25,7 +25,7 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
  */
 public class SzakiRegistrationController extends SimpleFormController {
 
-    private String[] szakiData;
+    private String[] szakiData = new String[14];
     DerbyDao dao = new DerbyDao();
     ModelAndView professionMv;
 
@@ -42,12 +42,6 @@ public class SzakiRegistrationController extends SimpleFormController {
         //a dao adatforrásának megadása
         dao.setDataSource(dataSource);
 
-        /*professions = dao.selectAllProfession();
-         for (Profession prof : professions) {
-         System.out.println("\n\n");
-         System.out.println(prof.getId() + ", " + prof.getName());
-         }*/
-        //professionMv = new ModelAndView("szakiRegistrationView", "profession", professions);
         setCommandClass(Szaki.class);
         setCommandName("szakiRegistration");
         setSuccessView("szakiRegistrationSuccessView");
@@ -57,6 +51,7 @@ public class SzakiRegistrationController extends SimpleFormController {
     @Override
     protected Object formBackingObject(HttpServletRequest request) throws Exception {
         Szaki szaki = new Szaki();
+        szaki.setProfession(new String("Ács"));
         return szaki;
     }
 
@@ -74,15 +69,22 @@ public class SzakiRegistrationController extends SimpleFormController {
         //Adatbázis kapcsolat beállitása ez az adatforrás
         Szaki szaki = (Szaki) command;
 
+        String selectedCheckbox = szaki.getProfession();
+        String[] temp = new String[3];
+        temp = selectedCheckbox.split(",");
+        String[] selectedProfessions = new String[3];
+        for (int i = 0; i < temp.length; i++) {
+            selectedProfessions[i] = temp[i];
+        }
         //szakiData feltöltése a szakiRegistrationView-ban megadott adatokkal
         szakiData[0] = szaki.getFirstName();
         szakiData[1] = szaki.getLastName();
         szakiData[2] = szaki.getNameOfCompany();
         szakiData[3] = szaki.getEmail();
         szakiData[4] = szaki.getPhone();
-        szakiData[5] = szaki.getProfession1();
-        szakiData[6] = szaki.getProfession2();
-        szakiData[7] = szaki.getProfession3();
+        szakiData[5] = selectedProfessions[0];
+        szakiData[6] = selectedProfessions[1];
+        szakiData[7] = selectedProfessions[2];
         szakiData[8] = szaki.getCountry();
         szakiData[9] = szaki.getCounty();
         szakiData[10] = szaki.getCity();
@@ -91,34 +93,24 @@ public class SzakiRegistrationController extends SimpleFormController {
         szakiData[13] = szaki.getPassword();
 
         //dao.createSzaki létrehozza az új adatbázis sort a szakiData adataival
-        //dao.createSzaki(szakiData);
+        dao.createSzaki(szakiData);
+        
         //a ModelAndView lekéri a sikeres nézetet ami a szakiRegistrationSuccessView
         //ModelAndView mv = new ModelAndView(getSuccessView());
         //Do something...
         //return mv;
+        for (int i = 0; i < 13; i++) {
+            System.out.println(szakiData[i]);
+        }
         return new ModelAndView("szakiRegistrationSuccessView", "szaki", szaki);
     }
 
-    /*protected Map professionData(HttpServletRequest request) throws Exception {
-     Map professionRef = new HashMap();
-     List<String> frameworkList = new ArrayList<String>();
-     frameworkList.add("egyes");
-     frameworkList.add("ketets");
-     frameworkList.add("hármas");
-     //profession lista feltöltése a boss.profession táblából
-     //        professions.add((Profession) dao.selectAllProfession());
-     //        professionRef.put("professionData", professions);
-     professionRef.put("frameworkList", frameworkList);
-     return professionRef;
-     }*/
     @Override
     protected Map referenceData(HttpServletRequest request) throws Exception {
         Map referenceData = new HashMap();
-        List<String> professionList = new ArrayList<String>();
-        professionList.add("egy");
-        professionList.add("ketto");
-        professionList.add("harom");
-        referenceData.put("professionList", professionList);
+        List<Profession> professionsList;
+        professionsList = dao.selectAllProfession();
+        referenceData.put("professionsList", professionsList);
         return referenceData;
     }
 

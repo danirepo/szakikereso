@@ -8,6 +8,7 @@
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/dao/mapper/ProfessionResultSetExtractor.java</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/szakiRegistrationSuccessView.jsp</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/szakiRegistrationView.jsp</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/web.xml</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/domain/User.java</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/dao/mapper/UserResultSetExtractor.java</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/controller/UserRegistrationController.java</file>
@@ -15,11 +16,14 @@
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/domain/Profession.java</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/dao/mapper/SzakiRowMapper.java</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/index.jsp</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/validator/UserValidator.java</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/dao/mapper/ProfessionRowMapper.java</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/dao/Dao.java</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/dao/DerbyDao.java</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/dao/mapper/UserRowMapper.java</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/properties/message.properties</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/dao/mapper/SzakiResultSetExtractor.java</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/validator/EmailValidator.java</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/dispatcher-servlet.xml</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/domain/Szaki.java</file>
         </group>

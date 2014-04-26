@@ -24,8 +24,8 @@ public class UserValidator implements Validator {
     }
 
     @Override
-    public void validate(Object object, Errors errors) {
-        User user = (User) object;
+    public void validate(Object target, Errors errors) {
+        User user = (User) target;
 
         if (user.getLastName().isEmpty()) {
             errors.rejectValue("lastName", "required.lastName");

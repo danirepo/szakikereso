@@ -11,11 +11,25 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <style>
+            .error {
+                color: #ff0000;
+            }
+
+            .errorblock {
+                color: #000;
+                background-color: #ffEEEE;
+                border: 3px solid #ff0000;
+                padding: 8px;
+                margin: 16px;
+            }
+        </style>
     </head>
     <body>
         <spring:nestedPath path="szakiRegistration">
             <form:form commandName="szakiRegistration" method="POST">
-                Vezetéknév:
+                <form:errors path="*" cssClass="errorblock" element="div"></form:errors>
+                    Vezetéknév:
                 <spring:bind path="lastName">
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="Vezetéknév" /><br />
                 </spring:bind>
@@ -36,7 +50,9 @@
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="Telefonszám" /><br />
                 </spring:bind>
                 Szakma:
-                <form:checkboxes items="${professionList}" path=""/>
+                <c:forEach items="${professionsList}" var="prof">
+                    <form:checkbox path="profession" id="${prof.id}" value="${prof.id}" label="${prof.name}" />
+                </c:forEach><br />
                 Ország:
                 <spring:bind path="country">
                     <select name="${status.expression}">
@@ -68,7 +84,9 @@
                     <input type="password" name="${status.expression}" value="${status.value}" placeholder="Jelszó" /><br />
                 </spring:bind>
                 Jelszó:
-                <input type="password" name="password" placeholder="Jelszó" /><br />
+                <spring:bind path="password2">
+                    <input type="password" name="${status.expression}" value="${status.value}" placeholder="Jelszó" /><br />
+                </spring:bind>
                 <input type="submit" value="Regisztráció" />
             </form:form>
         </spring:nestedPath>

@@ -27,9 +27,10 @@ public class DerbyDao implements Dao {
     private int lastId;
 
     /**
-     * A dataSource változó lesz az adatforrás helye.
-     * Az adatforrást külön kell beállitani és itt csak meg kell adni azt.
-     * @param dataSource 
+     * A dataSource változó lesz az adatforrás helye. Az adatforrást külön kell
+     * beállitani és itt csak meg kell adni azt.
+     *
+     * @param dataSource
      */
     @Override
     public void setDataSource(DataSource dataSource) {
@@ -38,10 +39,11 @@ public class DerbyDao implements Dao {
 
     /**
      * A metódus létrehoz egy sort a boss.users táblában.
+     *
      * @param firstName
      * @param lastName
      * @param email
-     * @param password 
+     * @param password
      */
     @Override
     public void createUser(String firstName, String lastName, String email, String password) {
@@ -53,28 +55,32 @@ public class DerbyDao implements Dao {
     }
 
     /**
-     * A metódus létrehoz egy sort a boss.szaki táblában.
-     * A szakiData tömbnek sorrendben kell tartalmazni a létrehozáshoz szükséges adatokat.
-     * firstname, lastname, nameofcompany, email, phone, profession1, profession2, profession3,
-     * country, county, city, street, number, password
-     * @param szakiData 
+     * A metódus létrehoz egy sort a boss.szaki táblában. A szakiData tömbnek
+     * sorrendben kell tartalmazni a létrehozáshoz szükséges adatokat.
+     * firstname, lastname, nameofcompany, email, phone, profession1,
+     * profession2, profession3, country, county, city, street, number, password
+     *
+     * @param szakiData
      */
     @Override
     public void createSzaki(String[] szakiData) {
         szaki = selectAllSzaki();
         lastId = szaki.size() + 1;
+        int phone = Integer.parseInt(szakiData[4]);
+        int number = Integer.parseInt(szakiData[12]);
         JdbcTemplate insert = new JdbcTemplate(dataSource);
         insert.update("INSERT INTO boss.szaki (id, firstname, lastname, nameofcompany, email, phone, profession1, profession2, profession3, country, county, city, street, number, password) "
-                + "VALUES(" + lastId + ", '" + szakiData[0] + "', '" + szakiData[1] + "', '" + szakiData[2] + "', '" + szakiData[3] + "', '" + szakiData[4] + "', '" + szakiData[5] + "', '" + szakiData[6] + "', '"
-                + szakiData[7] + "', '" + szakiData[8] + "', '" + szakiData[9] + "', '" + szakiData[10] + "', '" + szakiData[11] + "', '" + szakiData[12] + "', '" + szakiData[13] + "')");
+                + "VALUES(" + lastId + ", '" + szakiData[0] + "', '" + szakiData[1] + "', '" + szakiData[2] + "', '" + szakiData[3] + "', " + phone + ", '" + szakiData[5] + "', '" + szakiData[6] + "', '"
+                + szakiData[7] + "', '" + szakiData[8] + "', '" + szakiData[9] + "', '" + szakiData[10] + "', '" + szakiData[11] + "', " + number + ", '" + szakiData[13] + "')");
     }
 
     /**
-     * A boss.users táblában keres.
-     * A selectSql String-et lefutatja és vissza adja a kérésre kapot eredményt.
-     * A selectSql-nek kell tartalmaznia az SQL parancsot.
+     * A boss.users táblában keres. A selectSql String-et lefutatja és vissza
+     * adja a kérésre kapot eredményt. A selectSql-nek kell tartalmaznia az SQL
+     * parancsot.
+     *
      * @param selectSql
-     * @return 
+     * @return
      */
     @Override
     public List<User> select(String selectSql) {
@@ -84,7 +90,8 @@ public class DerbyDao implements Dao {
 
     /**
      * Vissza adja az összes sort a boss.useres táblából.
-     * @return 
+     *
+     * @return
      */
     @Override
     public List<User> selectAllUser() {
@@ -94,7 +101,8 @@ public class DerbyDao implements Dao {
 
     /**
      * Vissza adja az összes sort a boss.szaki táblából.
-     * @return 
+     *
+     * @return
      */
     @Override
     public List<Szaki> selectAllSzaki() {
@@ -104,7 +112,8 @@ public class DerbyDao implements Dao {
 
     /**
      * Lefutatja a deleteSql Stringet.
-     * @param deleteSql 
+     *
+     * @param deleteSql
      */
     @Override
     public void delete(String deleteSql) {
@@ -113,8 +122,7 @@ public class DerbyDao implements Dao {
     }
 
     /**
-     * Mindent kitörölne.
-     * Egynelőre nincs megírva.
+     * Mindent kitörölne. Egynelőre nincs megírva.
      */
     @Override
     public void deleteAll() {
@@ -123,7 +131,8 @@ public class DerbyDao implements Dao {
 
     /**
      * Vissza adja az összes szakmát a boss.profession táblából.
-     * @return 
+     *
+     * @return
      */
     @Override
     public List<Profession> selectAllProfession() {

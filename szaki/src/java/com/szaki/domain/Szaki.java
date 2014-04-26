@@ -12,7 +12,7 @@ package com.szaki.domain;
 public class Szaki {
 
     private int id;
-    private String firstName, lastName, nameOfCompany, email, phone, profession1, profession2, profession3, country, county, city, street, number, password;
+    private String firstName, lastName, nameOfCompany, email, phone, profession, profession2, profession3, country, county, city, street, number, password, password2;
 
     public int getId() {
         return id;
@@ -62,12 +62,12 @@ public class Szaki {
         this.phone = phone;
     }
 
-    public String getProfession1() {
-        return profession1;
+    public String getProfession() {
+        return profession;
     }
 
-    public void setProfession1(String profession1) {
-        this.profession1 = profession1;
+    public void setProfession(String profession) {
+        this.profession = profession;
     }
 
     public String getProfession2() {
@@ -132,6 +132,14 @@ public class Szaki {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPassword2() {
+        return password2;
+    }
+
+    public void setPassword2(String password2) {
+        this.password2 = password2;
     }
 
 }

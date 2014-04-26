@@ -30,7 +30,7 @@
     <body>
         <spring:nestedPath path="userRegistration">
             <form:form commandName="userRegistration" method="POST">
-                <form:errors path="*" cssClass="errorBlock" element="div" />
+                <form:errors path="*" cssClass="errorblock" element="div" />
                 Vezetéknév:
                 <spring:bind path="lastName">
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="Vezetéknév" />

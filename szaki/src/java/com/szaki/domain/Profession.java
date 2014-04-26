@@ -15,7 +15,6 @@ public class Profession {
 
     private int id;
     private String name;
-    private List<Profession> professions;
 
     public int getId() {
         return id;
@@ -31,14 +30,6 @@ public class Profession {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Profession> getProfessions() {
-        return professions;
-    }
-
-    public void setProfessions(List<Profession> professions) {
-        this.professions = professions;
     }
 
 }

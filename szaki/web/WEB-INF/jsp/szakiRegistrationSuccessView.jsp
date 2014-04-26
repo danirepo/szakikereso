@@ -14,7 +14,7 @@
     </head>
     <body>
         <h1>Sikeres szakember regisztráció</h1>
-        <c:forEach items="${profession.professionList}" var="prof">
+        <c:forEach items="${szaki.profession}" var="prof">
             <p><c:out value="${prof}"/></p>
         </c:forEach>
     </body>

@@ -26,7 +26,7 @@ public class SzakiResultSetExtractor implements ResultSetExtractor {
         szaki.setNameOfCompany(rs.getString("nameofcompany"));
         szaki.setEmail(rs.getString("email"));
         szaki.setPhone(rs.getString("phone"));
-        szaki.setProfession1(rs.getString("profession1"));
+        szaki.setProfession(rs.getString("profession"));
         szaki.setProfession2(rs.getString("profession2"));
         szaki.setProfession3(rs.getString("profession3"));
         szaki.setCountry(rs.getString("country"));

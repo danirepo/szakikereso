@@ -23,7 +23,9 @@
     </bean>
     <!--<bean name="/szakiregisztracio.htm" class="com.szaki.controller.SzakiRegistrationController" />-->
     <bean name="/szakiregisztracio.htm" class="com.szaki.controller.SzakiRegistrationController">
-        
+        <property name="validator">
+            <bean class="com.szaki.validator.SzakiValidator" />
+        </property>
     </bean>
     
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
