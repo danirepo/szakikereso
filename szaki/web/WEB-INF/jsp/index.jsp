@@ -18,5 +18,6 @@
             <tt>web.xml</tt>.</p>
         <a href="<c:url value="/regisztracio.htm"/>">Regisztráció</a>
         <a href="<c:url value="/szakiregisztracio.htm" />">Szaki regisztráció</a>
+        <a href="<c:url value="/kereses.htm" />">Keresés</a>
     </body>
 </html>

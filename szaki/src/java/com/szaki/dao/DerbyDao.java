@@ -88,6 +88,12 @@ public class DerbyDao implements Dao {
         return select.query(selectSql, new UserRowMapper());
     }
 
+    @Override
+    public List<Szaki> selectSzaki(String selectSql) {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        return select.query(selectSql, new SzakiRowMapper());
+    }
+
     /**
      * Vissza adja az összes sort a boss.useres táblából.
      *

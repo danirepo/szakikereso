@@ -52,7 +52,7 @@ public class SzakiValidator implements Validator {
             errors.rejectValue("phone", "required.phone");
         }
 
-/*        if (szaki.getProfession().length() == 0) {
+/*        if (szaki.getProfession().isEmpty()) {
             errors.rejectValue("profession", "required.profession");
         }
 */

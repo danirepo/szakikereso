@@ -28,6 +28,8 @@
         </property>
     </bean>
     
+    <bean name="/kereses.htm" class="com.szaki.controller.SearchController" />
+    
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="/WEB-INF/properties/message"></property>
     </bean>

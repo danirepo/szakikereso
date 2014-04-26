@@ -25,6 +25,8 @@ public interface Dao {
 
     List<User> select(String selectSql);
 
+    List<Szaki> selectSzaki(String selectSql);
+
     List<User> selectAllUser();
 
     List<Szaki> selectAllSzaki();
