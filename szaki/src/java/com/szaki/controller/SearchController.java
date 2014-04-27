@@ -41,6 +41,9 @@ public class SearchController extends SimpleFormController {
         //a dao adatforrásának megadása
         dao.setDataSource(dataSource);
 
+        //a szakmák lista feltöltése
+        listOfProfessions = dao.selectAllProfession();
+
         //Initialize controller properties here or 
         //in the Web Application Context
         setCommandClass(Szaki.class);
@@ -76,10 +79,12 @@ public class SearchController extends SimpleFormController {
         System.out.println(finalSql);
 
         foundList = dao.selectSzaki(finalSql);
+
         if (foundList.isEmpty()) {
             String noFound = "Nincs találat";
             return new ModelAndView("searchSuccessView", "notFound", noFound);
         } else {
+            professionModify();
             return new ModelAndView("searchSuccessView", "foundList", foundList);
         }
     }
@@ -87,10 +92,30 @@ public class SearchController extends SimpleFormController {
     @Override
     protected Map referenceData(HttpServletRequest request) throws Exception {
         Map refenceData = new HashMap();
-        Map valami = new HashMap();
-        listOfProfessions = dao.selectAllProfession();
         refenceData.put("listOfProfessions", listOfProfessions);
         return refenceData;
+    }
+
+    private void professionModify() {
+        String tempProfession1, tempProfession2, tempProfession3;
+        String tempId;
+        for (Szaki listItem : foundList) {
+            tempProfession1 = listItem.getProfession();
+            tempProfession2 = listItem.getProfession2();
+            tempProfession3 = listItem.getProfession3();
+            for (Profession profession : listOfProfessions) {
+                tempId = String.valueOf(profession.getId());
+                if (tempProfession1.equals(tempId)) {
+                    listItem.setProfession(profession.getName());
+                }
+                if (tempProfession2.equals(tempId)) {
+                    listItem.setProfession2(profession.getName());
+                }
+                if (tempProfession3.equals(tempId)) {
+                    listItem.setProfession3(profession.getName());
+                }
+            }
+        }
     }
 
 }

@@ -52,12 +52,16 @@ public class SzakiValidator implements Validator {
             errors.rejectValue("phone", "required.phone");
         }
 
-/*        if (szaki.getProfession().isEmpty()) {
+        try {
+            if (szaki.getProfession().isEmpty()) {
+                errors.rejectValue("profession", "required.profession");
+            }
+
+            if (szaki.getProfession().length() > MAX_PROFESSION) {
+                errors.rejectValue("profession", "much.profession");
+            }
+        } catch (Exception e) {
             errors.rejectValue("profession", "required.profession");
-        }
-*/
-        if (szaki.getProfession().length() > MAX_PROFESSION) {
-            errors.rejectValue("profession", "much.profession");
         }
 
         if (szaki.getCountry().isEmpty()) {
