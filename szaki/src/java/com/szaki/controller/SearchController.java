@@ -41,6 +41,7 @@ public class SearchController extends SimpleFormController {
         //a dao adatforrásának megadása
         dao.setDataSource(dataSource);
 
+        
         //a szakmák lista feltöltése
         listOfProfessions = dao.selectAllProfession();
 

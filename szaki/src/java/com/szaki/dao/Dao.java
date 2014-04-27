@@ -5,6 +5,7 @@
  */
 package com.szaki.dao;
 
+import com.szaki.domain.Login;
 import com.szaki.domain.Profession;
 import com.szaki.domain.Szaki;
 import com.szaki.domain.User;
@@ -32,6 +33,12 @@ public interface Dao {
     List<Szaki> selectAllSzaki();
 
     List<Profession> selectAllProfession();
+
+    List<Login> selectAllLogin();
+
+    List<Login> selectLoginUser();
+
+    public void createLoginUser(int userId, String email, String password, int access);
 
     public void delete(String deleteSql);
 

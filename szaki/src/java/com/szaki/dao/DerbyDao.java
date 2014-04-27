@@ -5,9 +5,11 @@
  */
 package com.szaki.dao;
 
+import com.szaki.dao.mapper.LoginRowMapper;
 import com.szaki.dao.mapper.ProfessionRowMapper;
 import com.szaki.dao.mapper.SzakiRowMapper;
 import com.szaki.dao.mapper.UserRowMapper;
+import com.szaki.domain.Login;
 import com.szaki.domain.Profession;
 import com.szaki.domain.Szaki;
 import com.szaki.domain.User;
@@ -22,9 +24,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class DerbyDao implements Dao {
 
     private DataSource dataSource;
-    private List<User> user;
-    private List<Szaki> szaki;
+    private List<User> listOfUser;
+    private List<Szaki> listOfSzaki;
+    private List<Login> listOfLogin;
     private int lastId;
+
+    public DerbyDao() {
+    }
 
     /**
      * A dataSource változó lesz az adatforrás helye. Az adatforrást külön kell
@@ -35,6 +41,7 @@ public class DerbyDao implements Dao {
     @Override
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
+        syncronizing();
     }
 
     /**
@@ -47,8 +54,8 @@ public class DerbyDao implements Dao {
      */
     @Override
     public void createUser(String firstName, String lastName, String email, String password) {
-        user = selectAllUser();
-        lastId = user.size() + 1;
+        listOfUser = selectAllUser();
+        lastId = listOfUser.size() + 1;
         JdbcTemplate insert = new JdbcTemplate(dataSource);
         // TODO megkeresni a legutolso id-t
         insert.update("INSERT INTO boss.users (id, firstname, lastname, email, password) VALUES(" + lastId + ", '" + firstName + "', '" + lastName + "', '" + email + "', '" + password + "')");
@@ -64,8 +71,8 @@ public class DerbyDao implements Dao {
      */
     @Override
     public void createSzaki(String[] szakiData) {
-        szaki = selectAllSzaki();
-        lastId = szaki.size() + 1;
+        listOfSzaki = selectAllSzaki();
+        lastId = listOfSzaki.size() + 1;
         int phone = Integer.parseInt(szakiData[4]);
         int number = Integer.parseInt(szakiData[12]);
         JdbcTemplate insert = new JdbcTemplate(dataSource);
@@ -102,7 +109,7 @@ public class DerbyDao implements Dao {
     @Override
     public List<User> selectAllUser() {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("select ID, FIRSTNAME, LASTNAME, EMAIL, PASSWORD from boss.users", new UserRowMapper());
+        return select.query("select * from boss.users", new UserRowMapper());
     }
 
     /**
@@ -113,7 +120,7 @@ public class DerbyDao implements Dao {
     @Override
     public List<Szaki> selectAllSzaki() {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("select id, firstname, lastname, nameofcompany ,email, phone, profession1, profession2, profession3, country, county, city, street, number from boss.szaki", new SzakiRowMapper());
+        return select.query("select * from boss.szaki", new SzakiRowMapper());
     }
 
     /**
@@ -143,7 +150,60 @@ public class DerbyDao implements Dao {
     @Override
     public List<Profession> selectAllProfession() {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("select id, name from boss.profession", new ProfessionRowMapper());
+        return select.query("select * from boss.profession", new ProfessionRowMapper());
     }
 
+    @Override
+    public List<Login> selectAllLogin() {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        return select.query("select * from boss.login", new LoginRowMapper());
+    }
+
+    @Override
+    public List<Login> selectLoginUser() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void createLoginUser(int userId, String email, String password, int access) {
+        JdbcTemplate insert = new JdbcTemplate(dataSource);
+        listOfLogin = selectAllLogin();
+        lastId = listOfLogin.size() + 1;
+        insert.update("insert into boss.login (id, userid, email, password, access) values(" + lastId + ", " + userId + ", '" + email + "', '" + password + "', " + access + ")");
+    }
+
+    private void syncronizing() {
+        listOfSzaki = selectAllSzaki();
+        listOfUser = selectAllUser();
+        listOfLogin = selectAllLogin();
+        boolean hasFound = false;
+
+        for (User userItem : listOfUser) {
+            for (Login loginItem : listOfLogin) {
+                if (loginItem.getAccess() == 1) {
+                    if (userItem.getId() == loginItem.getUserId()) {
+                        hasFound = true;
+                    }
+                }
+            }
+            if (hasFound == false) {
+                createLoginUser(userItem.getId(), userItem.getEmail(), userItem.getPassword(), 1);
+            }
+            hasFound = false;
+        }
+
+        for (Szaki szakiItem : listOfSzaki) {
+            for (Login loginItem : listOfLogin) {
+                if (loginItem.getAccess() == 2) {
+                    if (szakiItem.getId() == loginItem.getUserId()) {
+                        hasFound = true;
+                    }
+                }
+            }
+            if (hasFound == false) {
+                createLoginUser(szakiItem.getId(), szakiItem.getEmail(), szakiItem.getPassword(), 2);
+            }
+            hasFound = false;
+        }
+    }
 }

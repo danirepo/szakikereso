@@ -34,6 +34,7 @@ public class SzakiResultSetExtractor implements ResultSetExtractor {
         szaki.setCity(rs.getString("city"));
         szaki.setStreet(rs.getString("street"));
         szaki.setNumber(rs.getString("number"));
+        szaki.setPassword(rs.getString("password"));
         return szaki;
     }
 
