@@ -12,16 +12,20 @@
        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context">
 
     <!--<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>-->
-    <context:component-scan base-package="com.szaki.controller" />
-    <mvc:resources mapping="/resource/**" location="classpath:/WEB-INF/js/" />
+    
+    <context:component-scan base-package="com.szaki" />    
+    
     <mvc:annotation-driven />
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
+    <mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
+    <mvc:resources mapping="/images/**" location="/WEB-INF/images/" />
     
     <bean name="/regisztracio.htm" class="com.szaki.controller.UserRegistrationController">
         <property name="validator">
             <bean class="com.szaki.validator.UserValidator" />
         </property>
     </bean>
-    <!--<bean name="/szakiregisztracio.htm" class="com.szaki.controller.SzakiRegistrationController" />-->
+    
     <bean name="/szakiregisztracio.htm" class="com.szaki.controller.SzakiRegistrationController">
         <property name="validator">
             <bean class="com.szaki.validator.SzakiValidator" />
@@ -30,12 +34,19 @@
     
     <bean name="/kereses.htm" class="com.szaki.controller.SearchController" />
     
+    <bean name="/login.htm" class="com.szaki.controller.LoginController">
+        <property name="validator">
+            <bean class="com.szaki.validator.LoginValidator"/>
+        </property>
+        
+    </bean>
+    
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="/WEB-INF/properties/message"></property>
     </bean>
-
     
-  
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+
 
     <!--
     Most controllers will use the ControllerClassNameHandlerMapping above, but
@@ -56,13 +67,11 @@
         <property name="suffix" value=".jsp"></property>        
     </bean> 
 
- 
-
     <!--
     The index controller.
     -->
     <bean name="indexController"
-          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
-          p:viewName="index" />
+      class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+      p:viewName="index" />
 
 </beans>

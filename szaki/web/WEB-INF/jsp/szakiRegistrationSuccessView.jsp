@@ -17,5 +17,6 @@
         <c:forEach items="${szaki.profession}" var="prof">
             <p><c:out value="${prof}"/></p>
         </c:forEach>
+        <a href="<c:url value="/szakiregisztracio.htm"/>">Vissza</a>
     </body>
 </html>

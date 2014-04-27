@@ -4,6 +4,7 @@
     Author     : Dani
 --%>
 
+<%@page import="com.szaki.domain.Login"%>
 <%@include file="include.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,6 +15,7 @@
     </head>
     <body>
         <h1>Keresés!</h1>
+        <c:out value="${loggedUser}" />
         <form:form commandName="searching" method="POST">
             Ország:
             <spring:bind path="country">

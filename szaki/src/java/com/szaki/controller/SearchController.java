@@ -13,8 +13,10 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.validation.BindException;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
  *
  * @author Dani
  */
+@SessionAttributes("loggedUser")
 public class SearchController extends SimpleFormController {
 
     private DerbyDao dao = new DerbyDao();
@@ -41,8 +44,6 @@ public class SearchController extends SimpleFormController {
         //a dao adatforrásának megadása
         dao.setDataSource(dataSource);
 
-        
-        //a szakmák lista feltöltése
         listOfProfessions = dao.selectAllProfession();
 
         //Initialize controller properties here or 
@@ -86,7 +87,11 @@ public class SearchController extends SimpleFormController {
             return new ModelAndView("searchSuccessView", "notFound", noFound);
         } else {
             professionModify();
-            return new ModelAndView("searchSuccessView", "foundList", foundList);
+            ModelAndView modelAndView = new ModelAndView(getSuccessView());
+            modelAndView.addObject("foundList", foundList);
+            return modelAndView;
+            //return new ModelAndView("searchSuccessView", "foundList", foundList);
+            
         }
     }
 

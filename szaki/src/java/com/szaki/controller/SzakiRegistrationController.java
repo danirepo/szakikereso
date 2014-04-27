@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.validation.BindException;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
 
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
  *
  * @author Dani
  */
+@SessionAttributes("loggedUser")
 public class SzakiRegistrationController extends SimpleFormController {
 
     private String[] szakiData = new String[14];
@@ -80,27 +82,29 @@ public class SzakiRegistrationController extends SimpleFormController {
         szakiData[0] = szaki.getFirstName();
         szakiData[1] = szaki.getLastName();
         szakiData[2] = szaki.getNameOfCompany();
-        szakiData[3] = szaki.getEmail();
-        szakiData[4] = szaki.getPhone();
-        szakiData[5] = selectedProfessions[0];
-        szakiData[6] = selectedProfessions[1];
-        szakiData[7] = selectedProfessions[2];
-        szakiData[8] = szaki.getCountry();
-        szakiData[9] = szaki.getCounty();
-        szakiData[10] = szaki.getCity();
-        szakiData[11] = szaki.getStreet();
-        szakiData[12] = szaki.getNumber();
-        szakiData[13] = szaki.getPassword();
+        szakiData[3] = szaki.getEmail();        
+        szakiData[4] = selectedProfessions[0];
+        szakiData[5] = selectedProfessions[1];
+        szakiData[6] = selectedProfessions[2];
+        szakiData[7] = szaki.getCountry();
+        szakiData[8] = szaki.getCounty();
+        szakiData[9] = szaki.getCity();
+        szakiData[10] = szaki.getStreet();
+        szakiData[11] = szaki.getPassword();
+        szakiData[12] = szaki.getPhone();
+        szakiData[13] = szaki.getNumber();
 
         //dao.createSzaki létrehozza az új adatbázis sort a szakiData adataival
         dao.createSzaki(szakiData);
+        
+        
         
         //a ModelAndView lekéri a sikeres nézetet ami a szakiRegistrationSuccessView
         //ModelAndView mv = new ModelAndView(getSuccessView());
         //Do something...
         //return mv;
         for (int i = 0; i < 13; i++) {
-            System.out.println(szakiData[i]);
+//            System.out.println(szakiData[i]);
         }
         return new ModelAndView("szakiRegistrationSuccessView", "szaki", szaki);
     }

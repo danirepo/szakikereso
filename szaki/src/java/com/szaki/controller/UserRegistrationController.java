@@ -47,7 +47,7 @@ public class UserRegistrationController extends SimpleFormController {
         dao.setDataSource(dataSource);
 
         User user = (User) command;
-        System.out.println(user.getFirstName() + "," + user.getLastName() + "," + user.getEmail() + "," + user.getPassword());
+//        System.out.println(user.getFirstName() + "," + user.getLastName() + "," + user.getEmail() + "," + user.getPassword());
 
         dao.createUser(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
 

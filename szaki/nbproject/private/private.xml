@@ -3,15 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/controller/SzakiRegistrationController.java</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/loginSuccessView.jsp</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/index.jsp</file>
-            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/searchSuccessView.jsp</file>
-            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/dao/Dao.java</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/searchView.jsp</file>
-            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/dao/DerbyDao.java</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/domain/Login.java</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/dao/Dao.java</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/controller/LoginController.java</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/loginView.jsp</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/properties/message.properties</file>
-            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/szakiRegistrationView.jsp</file>
-            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/szakiRegistrationSuccessView.jsp</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/include.jsp</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/validator/LoginValidator.java</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/dispatcher-servlet.xml</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/controller/SearchController.java</file>
         </group>

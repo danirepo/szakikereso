@@ -59,6 +59,7 @@ public class DerbyDao implements Dao {
         JdbcTemplate insert = new JdbcTemplate(dataSource);
         // TODO megkeresni a legutolso id-t
         insert.update("INSERT INTO boss.users (id, firstname, lastname, email, password) VALUES(" + lastId + ", '" + firstName + "', '" + lastName + "', '" + email + "', '" + password + "')");
+        syncronizing();
     }
 
     /**
@@ -73,12 +74,11 @@ public class DerbyDao implements Dao {
     public void createSzaki(String[] szakiData) {
         listOfSzaki = selectAllSzaki();
         lastId = listOfSzaki.size() + 1;
-        int phone = Integer.parseInt(szakiData[4]);
-        int number = Integer.parseInt(szakiData[12]);
         JdbcTemplate insert = new JdbcTemplate(dataSource);
-        insert.update("INSERT INTO boss.szaki (id, firstname, lastname, nameofcompany, email, phone, profession1, profession2, profession3, country, county, city, street, number, password) "
-                + "VALUES(" + lastId + ", '" + szakiData[0] + "', '" + szakiData[1] + "', '" + szakiData[2] + "', '" + szakiData[3] + "', " + phone + ", '" + szakiData[5] + "', '" + szakiData[6] + "', '"
-                + szakiData[7] + "', '" + szakiData[8] + "', '" + szakiData[9] + "', '" + szakiData[10] + "', '" + szakiData[11] + "', " + number + ", '" + szakiData[13] + "')");
+        insert.update("INSERT INTO boss.szaki (id, firstname, lastname, nameofcompany, email, profession1, profession2, profession3, country, county, city, street, password, phone, number) "
+                + "VALUES(" + lastId + ", '" + szakiData[0] + "', '" + szakiData[1] + "', '" + szakiData[2] + "', '" + szakiData[3] + "', '" + szakiData[4] + "', '" + szakiData[5] + "', '" + szakiData[6] + "', '"
+                + szakiData[7] + "', '" + szakiData[8] + "', '" + szakiData[9] + "', '" + szakiData[10] + "', '" + szakiData[11] + "', '" + szakiData[12] + "', '" + szakiData[13] + "')");
+        syncronizing();
     }
 
     /**
@@ -132,6 +132,7 @@ public class DerbyDao implements Dao {
     public void delete(String deleteSql) {
         JdbcTemplate delete = new JdbcTemplate(dataSource);
         delete.update(deleteSql);
+        syncronizing();
     }
 
     /**
@@ -202,6 +203,29 @@ public class DerbyDao implements Dao {
             }
             if (hasFound == false) {
                 createLoginUser(szakiItem.getId(), szakiItem.getEmail(), szakiItem.getPassword(), 2);
+            }
+            hasFound = false;
+        }
+
+        for (Login loginItem : listOfLogin) {
+            for (User userItem : listOfUser) {
+                if (loginItem.getAccess() == 1) {
+                    if (loginItem.getUserId() == userItem.getId()) {
+                        hasFound = true;
+                    }
+                }
+            }
+            if (hasFound == false) {
+                for (Szaki szakiItem : listOfSzaki) {
+                    if (loginItem.getAccess() == 2) {
+                        if (loginItem.getUserId() == szakiItem.getId()) {
+                            hasFound = true;
+                        }
+                    }
+                }
+            }
+            if (hasFound == false) {
+                delete("delete from boss.login where id=" + loginItem.getId());
             }
             hasFound = false;
         }

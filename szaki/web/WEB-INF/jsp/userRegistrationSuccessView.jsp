@@ -4,6 +4,7 @@
     Author     : Dani
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,5 +14,6 @@
     </head>
     <body>
         <h1>Sikeres regisztráció</h1>
+        <a href="<c:url value="/regisztracio.htm" />">Vissza</a>
     </body>
 </html>

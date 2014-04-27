@@ -5,7 +5,11 @@
  */
 package com.szaki.validator;
 
+import com.szaki.dao.DerbyDao;
+import com.szaki.domain.Login;
 import com.szaki.domain.Szaki;
+import java.util.List;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -18,6 +22,8 @@ public class SzakiValidator implements Validator {
     private EmailValidator emailValidator = new EmailValidator();
     private final static int MIN_PASSWORD = 6;
     private final static int MAX_PROFESSION = 5;
+    private List<Login> listOfLogin;
+    DerbyDao dao = new DerbyDao();
 
     @Override
     public boolean supports(Class clazz) {
@@ -27,6 +33,17 @@ public class SzakiValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Szaki szaki = (Szaki) target;
+
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("org.apache.derby.jdbc.ClientDriver");
+        dataSource.setUrl("jdbc:derby://localhost:1527/szakiDB;create=true");
+        dataSource.setUsername("boss");
+        dataSource.setPassword("omygod");
+
+        //a dao adatforrásának megadása
+        dao.setDataSource(dataSource);
+
+        listOfLogin = dao.selectAllLogin();
 
         if (szaki.getLastName().isEmpty()) {
             errors.rejectValue("lastName", "required.lastName");
@@ -46,6 +63,15 @@ public class SzakiValidator implements Validator {
 
         if (!(emailValidator.validate(szaki.getEmail()))) {
             errors.rejectValue("email", "invalid.email");
+        }
+
+        if (!(szaki.getEmail().isEmpty()) && (emailValidator.validate(szaki.getEmail()))) {
+            for (Login loginItem : listOfLogin) {
+                if (loginItem.getEmail().equals(szaki.getEmail())) {
+                    errors.rejectValue("email", "used.email");
+                    break;
+                }
+            }
         }
 
         if (szaki.getPhone().isEmpty()) {

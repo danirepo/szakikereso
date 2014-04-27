@@ -10,22 +10,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <script type="text/javascript" src="<c:url value="/resource/check.js" />"></script>
-        <script type="text/javascript" src="<c:url value="/web/WEB-INF/js/jquery-1.11.0.min.js"/>"></script>
-        <style>
-            .error {
-                color: #ff0000;
-            }
-
-            .errorblock {
-                color: #000;
-                background-color: #ffEEEE;
-                border: 3px solid #ff0000;
-                padding: 8px;
-                margin: 16px;
-            }
-        </style>
+        <title><fmt:message key="userRegistrationView.title" /></title>
+        <%@include file="source.jsp" %>
     </head>
     <body>
         <spring:nestedPath path="userRegistration">

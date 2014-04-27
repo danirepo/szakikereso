@@ -24,19 +24,19 @@ public interface Dao {
 
     public void createSzaki(String[] szakiData);
 
-    List<User> select(String selectSql);
+    public List<User> select(String selectSql);
 
-    List<Szaki> selectSzaki(String selectSql);
+    public List<Szaki> selectSzaki(String selectSql);
 
-    List<User> selectAllUser();
+    public List<User> selectAllUser();
 
-    List<Szaki> selectAllSzaki();
+    public List<Szaki> selectAllSzaki();
 
-    List<Profession> selectAllProfession();
+    public List<Profession> selectAllProfession();
 
-    List<Login> selectAllLogin();
+    public List<Login> selectAllLogin();
 
-    List<Login> selectLoginUser();
+    public List<Login> selectLoginUser();
 
     public void createLoginUser(int userId, String email, String password, int access);
 
