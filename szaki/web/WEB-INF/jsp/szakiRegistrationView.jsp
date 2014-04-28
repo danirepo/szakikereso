@@ -26,6 +26,8 @@
         </style>
     </head>
     <body>
+        <h1>Szakember regisztráció</h1>
+        <p>Ha Ön értékelni szeretné a szakemberek válassza a <a href="<c:url value="/regisztracio.htm" />" >felhasználó regisztrációt</a></p>
         <spring:nestedPath path="szakiRegistration">
             <form:form commandName="szakiRegistration" method="POST">
                 <form:errors path="*" cssClass="errorblock" element="div"></form:errors>
@@ -47,7 +49,7 @@
                 </spring:bind>
                 Telefonszám:
                 <spring:bind path="phone">
-                    <input type="text" name="${status.expression}" value="${status.value}" placeholder="Telefonszám" /><br />
+                    <input type="text" name="${status.expression}" value="${status.value}" placeholder="30/123-4567" /> pl.: 30/123-4567<br />
                 </spring:bind>
                 Szakma:
                 <c:forEach items="${professionsList}" var="prof">

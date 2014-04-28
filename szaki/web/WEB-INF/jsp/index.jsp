@@ -14,7 +14,7 @@
     <div id="contents">
         <div id="adbox">
             <div class="clearfix">
-                <img class ="workers" src="images/handyman_on_ladder.png">
+                <img class ="workers" src="<c:url value="/images/handyman_on_ladder.png" />">
                 <img class="szoveg" src="images/szoveg.png" width="500" height="400">
             </div>
         </div>

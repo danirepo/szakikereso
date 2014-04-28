@@ -14,6 +14,8 @@
         <%@include file="source.jsp" %>
     </head>
     <body>
+        <h1>Regisztráció</h1>
+        <p>Ha Ön szakember akkor válassza a <a href="<c:url value="/szakiregisztracio.htm" />">szakember regisztrációt</a></p>
         <spring:nestedPath path="userRegistration">
             <form:form commandName="userRegistration" method="POST">
                 <form:errors path="*" cssClass="errorblock" element="div" />
