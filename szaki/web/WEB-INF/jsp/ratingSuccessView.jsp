@@ -1,6 +1,6 @@
 <%-- 
-    Document   : loginSuccessView
-    Created on : 2014.04.27., 17:47:43
+    Document   : ratingSuccessView
+    Created on : 2014.04.30., 20:26:37
     Author     : Dani
 --%>
 
@@ -13,11 +13,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
-        <h1>Welcome</h1>
-        
-        <c:out value="${loggedUser}" />
-        <c:out value="${login}" />
-        <a href="kereses.htm">Vissza</a>
+        <h1>Hello World!</h1>
+        <c:forEach items="${rating}" var="rat">
+            <c:out value="${rat.description}"/>
+        </c:forEach>
     </body>
 </html>

@@ -46,7 +46,7 @@ public class LoginValidator implements Validator {
             errors.rejectValue("email", "required.email");
         }
 
-        if (login.getEmail().isEmpty()) {
+        if (login.getPassword().isEmpty()) {
             errors.rejectValue("password", "required.password");
         }
 

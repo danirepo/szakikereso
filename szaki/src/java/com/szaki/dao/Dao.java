@@ -6,7 +6,9 @@
 package com.szaki.dao;
 
 import com.szaki.domain.Login;
+import com.szaki.domain.LoginRoles;
 import com.szaki.domain.Profession;
+import com.szaki.domain.Rating;
 import com.szaki.domain.Szaki;
 import com.szaki.domain.User;
 import java.util.List;
@@ -38,9 +40,17 @@ public interface Dao {
 
     public List<Login> selectLoginUser();
 
-    public void createLoginUser(int userId, String email, String password, int access);
+    public void createLoginUser(String email, String password);
+
+    public void createLoginRoles(String email, String role);
+
+    public List<LoginRoles> selectAllRoles();
 
     public void delete(String deleteSql);
 
     public void deleteAll();
+
+    public List<Rating> selectAllRating();
+
+    public void createRating(int mark, String description, String date, String sender, String szaki);
 }

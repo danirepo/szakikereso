@@ -14,6 +14,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <c:out value="${login}" />
         <h1>Keresés!</h1>
         <c:out value="${loggedUser}" />
         <form:form commandName="searching" method="POST">

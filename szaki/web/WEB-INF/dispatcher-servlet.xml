@@ -11,9 +11,12 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
        xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context">
 
+    <context:component-scan base-package="com.szaki.*" />  
+      
     <!--<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>-->
     
-    <context:component-scan base-package="com.szaki" />    
+   
+    
     
     <mvc:annotation-driven />
     <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
@@ -32,14 +35,20 @@
         </property>
     </bean>
     
+    
     <bean name="/kereses.htm" class="com.szaki.controller.SearchController" />
     
-    <bean name="/login.htm" class="com.szaki.controller.LoginController">
+    <bean name="/ertekeles.htm" class="com.szaki.controller.RatingController">
+        <property name="validator">
+            <bean class="com.szaki.validator.RatingValidator" />
+        </property>
+    </bean>
+    
+    <!--<bean class="com.szaki.controller.LoginController">
         <property name="validator">
             <bean class="com.szaki.validator.LoginValidator"/>
-        </property>
-        
-    </bean>
+        </property>        
+    </bean>-->
     
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="/WEB-INF/properties/message"></property>
@@ -71,7 +80,7 @@
     The index controller.
     -->
     <bean name="indexController"
-      class="org.springframework.web.servlet.mvc.ParameterizableViewController"
-      p:viewName="index" />
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="index" />
 
 </beans>

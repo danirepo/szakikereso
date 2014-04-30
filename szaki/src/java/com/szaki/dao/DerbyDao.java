@@ -7,10 +7,14 @@ package com.szaki.dao;
 
 import com.szaki.dao.mapper.LoginRowMapper;
 import com.szaki.dao.mapper.ProfessionRowMapper;
+import com.szaki.dao.mapper.RatingRowMapper;
+import com.szaki.dao.mapper.RoleRowMapper;
 import com.szaki.dao.mapper.SzakiRowMapper;
 import com.szaki.dao.mapper.UserRowMapper;
 import com.szaki.domain.Login;
+import com.szaki.domain.LoginRoles;
 import com.szaki.domain.Profession;
+import com.szaki.domain.Rating;
 import com.szaki.domain.Szaki;
 import com.szaki.domain.User;
 import java.util.List;
@@ -27,7 +31,11 @@ public class DerbyDao implements Dao {
     private List<User> listOfUser;
     private List<Szaki> listOfSzaki;
     private List<Login> listOfLogin;
+    private List<LoginRoles> listOfLoginRole;
+    private List<Rating> listOfRating;
     private int lastId;
+    private static final String USER_ROLE = "ROLE_USER";
+    private static final String SZAKI_ROLE = "ROLE_SZAKI";
 
     public DerbyDao() {
     }
@@ -55,7 +63,9 @@ public class DerbyDao implements Dao {
     @Override
     public void createUser(String firstName, String lastName, String email, String password) {
         listOfUser = selectAllUser();
-        lastId = listOfUser.size() + 1;
+        for (User userItem : listOfUser) {
+            lastId = userItem.getId() + 1;
+        }
         JdbcTemplate insert = new JdbcTemplate(dataSource);
         // TODO megkeresni a legutolso id-t
         insert.update("INSERT INTO boss.users (id, firstname, lastname, email, password) VALUES(" + lastId + ", '" + firstName + "', '" + lastName + "', '" + email + "', '" + password + "')");
@@ -73,7 +83,9 @@ public class DerbyDao implements Dao {
     @Override
     public void createSzaki(String[] szakiData) {
         listOfSzaki = selectAllSzaki();
-        lastId = listOfSzaki.size() + 1;
+        for (Szaki szakiItem : listOfSzaki) {
+            lastId = szakiItem.getId() + 1;
+        }
         JdbcTemplate insert = new JdbcTemplate(dataSource);
         insert.update("INSERT INTO boss.szaki (id, firstname, lastname, nameofcompany, email, profession1, profession2, profession3, country, county, city, street, password, phone, number) "
                 + "VALUES(" + lastId + ", '" + szakiData[0] + "', '" + szakiData[1] + "', '" + szakiData[2] + "', '" + szakiData[3] + "', '" + szakiData[4] + "', '" + szakiData[5] + "', '" + szakiData[6] + "', '"
@@ -166,11 +178,25 @@ public class DerbyDao implements Dao {
     }
 
     @Override
-    public void createLoginUser(int userId, String email, String password, int access) {
+    public void createLoginUser(String email, String password) {
         JdbcTemplate insert = new JdbcTemplate(dataSource);
-        listOfLogin = selectAllLogin();
-        lastId = listOfLogin.size() + 1;
-        insert.update("insert into boss.login (id, userid, email, password, access) values(" + lastId + ", " + userId + ", '" + email + "', '" + password + "', " + access + ")");
+        insert.update("insert into boss.login (email, password) values('" + email + "', '" + password + "')");
+    }
+
+    @Override
+    public List<LoginRoles> selectAllRoles() {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        return select.query("select * from boss.login_roles", new RoleRowMapper());
+    }
+
+    @Override
+    public void createLoginRoles(String email, String role) {
+        listOfLoginRole = selectAllRoles();
+        for (LoginRoles loginRolesItem : listOfLoginRole) {
+            lastId = loginRolesItem.getRoleId() + 1;
+        }
+        JdbcTemplate create = new JdbcTemplate(dataSource);
+        create.update("insert into boss.login_roles (user_role_id, email, role) values(" + lastId + ", '" + email + "', '" + role + "')");
     }
 
     private void syncronizing() {
@@ -181,53 +207,65 @@ public class DerbyDao implements Dao {
 
         for (User userItem : listOfUser) {
             for (Login loginItem : listOfLogin) {
-                if (loginItem.getAccess() == 1) {
-                    if (userItem.getId() == loginItem.getUserId()) {
-                        hasFound = true;
-                    }
+                if (userItem.getEmail().equals(loginItem.getEmail())) {
+                    hasFound = true;
                 }
             }
             if (hasFound == false) {
-                createLoginUser(userItem.getId(), userItem.getEmail(), userItem.getPassword(), 1);
+                createLoginUser(userItem.getEmail(), userItem.getPassword());
+                createLoginRoles(userItem.getEmail(), USER_ROLE);
             }
             hasFound = false;
         }
 
         for (Szaki szakiItem : listOfSzaki) {
             for (Login loginItem : listOfLogin) {
-                if (loginItem.getAccess() == 2) {
-                    if (szakiItem.getId() == loginItem.getUserId()) {
-                        hasFound = true;
-                    }
+                if (szakiItem.getEmail().equals(loginItem.getEmail())) {
+                    hasFound = true;
                 }
             }
             if (hasFound == false) {
-                createLoginUser(szakiItem.getId(), szakiItem.getEmail(), szakiItem.getPassword(), 2);
+                createLoginUser(szakiItem.getEmail(), szakiItem.getPassword());
+                createLoginRoles(szakiItem.getEmail(), SZAKI_ROLE);
             }
             hasFound = false;
         }
 
         for (Login loginItem : listOfLogin) {
             for (User userItem : listOfUser) {
-                if (loginItem.getAccess() == 1) {
-                    if (loginItem.getUserId() == userItem.getId()) {
+                if (loginItem.getEmail().equals(userItem.getEmail())) {
+                    hasFound = true;
+                }
+            }
+            if (hasFound == false) {
+                for (Szaki szakiItem : listOfSzaki) {
+                    if (loginItem.getEmail().equals(szakiItem.getEmail())) {
                         hasFound = true;
                     }
                 }
             }
             if (hasFound == false) {
-                for (Szaki szakiItem : listOfSzaki) {
-                    if (loginItem.getAccess() == 2) {
-                        if (loginItem.getUserId() == szakiItem.getId()) {
-                            hasFound = true;
-                        }
-                    }
-                }
-            }
-            if (hasFound == false) {
-                delete("delete from boss.login where id=" + loginItem.getId());
+                delete("delete from boss.login where email='" + loginItem.getEmail() + "'");
+                delete("delete from boss.login_roles where email='" + loginItem.getEmail() + "'");
             }
             hasFound = false;
         }
     }
+
+    @Override
+    public void createRating(int mark, String description, String date, String sender, String szaki) {
+        listOfRating = selectAllRating();
+        for (Rating ratingItem : listOfRating) {
+            lastId = ratingItem.getId() + 1;
+        }
+        JdbcTemplate create = new JdbcTemplate(dataSource);
+        create.update("insert into rating (id, mark, description, date, sender, szaki) values(" + lastId + ", " + mark + ", '" + description + "', '" + date + "', '" + sender + "', '" + szaki + "')");
+    }
+
+    @Override
+    public List<Rating> selectAllRating() {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        return select.query("select * from rating", new RatingRowMapper());
+    }
+
 }
