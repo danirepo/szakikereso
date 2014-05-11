@@ -22,10 +22,21 @@
             <c:if test="${item.profession != 'null'}"><c:out value=" ${item.profession}"/></c:if> 
             <c:if test="${item.profession2 != 'null'}">, <c:out value="${item.profession2}"/></c:if>
             <c:if test="${item.profession3 != 'null'}">, <c:out value="${item.profession3}"/></c:if></p>
-            <c:if test="${pageContext.request.userPrincipal.name != null}">
-                <sec:authorize access="hasRole('ROLE_USER')">
+            <p>Értékelések:</p>
+        <c:forEach items="${ratingList}" var="ratingItem">
+            <c:if test="${item.email == ratingItem.szaki}">
+                <c:out value="${ratingItem.mark}"/>
+                <c:out value="${ratingItem.description}"/>
+                <c:out value="${ratingItem.sender}"/>
+                <c:out value="${ratingItem.szaki}"/>
+                <c:out value="${ratingItem.date}"/>
+            </c:if>
+        </c:forEach>
+        <c:if test="${pageContext.request.userPrincipal.name != null}">
+            <sec:authorize access="hasRole('ROLE_USER')">
                 <a href="<c:url value="/ertekeles.htm" />" itemid="${item.email}" class="rating">Értékelés</a>
             </sec:authorize>
+
         </c:if>
     </c:forEach>
     <p><c:out value="${notFound}"/></p>

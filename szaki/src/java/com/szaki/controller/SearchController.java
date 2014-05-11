@@ -7,6 +7,7 @@ package com.szaki.controller;
 
 import com.szaki.dao.DerbyDao;
 import com.szaki.domain.Profession;
+import com.szaki.domain.Rating;
 import com.szaki.domain.Szaki;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +33,7 @@ public class SearchController extends SimpleFormController {
     private StringBuffer sql;
     private String finalSql;
     private List<Szaki> foundList;
+    private List<Rating> ratingList;
 
     public SearchController() {
 
@@ -81,6 +83,7 @@ public class SearchController extends SimpleFormController {
         System.out.println(finalSql);
 
         foundList = dao.selectSzaki(finalSql);
+        ratingList = dao.selectAllRating();
 
         if (foundList.isEmpty()) {
             String noFound = "Nincs találat";
@@ -89,9 +92,10 @@ public class SearchController extends SimpleFormController {
             professionModify();
             ModelAndView modelAndView = new ModelAndView(getSuccessView());
             modelAndView.addObject("foundList", foundList);
+            modelAndView.addObject("ratingList", ratingList);
             return modelAndView;
             //return new ModelAndView("searchSuccessView", "foundList", foundList);
-            
+
         }
     }
 
