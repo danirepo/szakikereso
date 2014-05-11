@@ -13,9 +13,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <c:forEach items="${rating}" var="rat">
-            <c:out value="${rat.description}"/>
-        </c:forEach>
+        <h1>Sikeres értékelés</h1>
     </body>
 </html>

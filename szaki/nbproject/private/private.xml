@@ -3,15 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/userRegistrationView.jsp</file>
             <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/searchSuccessView.jsp</file>
-            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/spring-security.xml</file>
-            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/profile.jsp</file>
-            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/controller/LoginController.java</file>
-            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/hello.jsp</file>
-            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/login.jsp</file>
-            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/dispatcher-servlet.xml</file>
-            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/header.jsp</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/searchView.jsp</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/dao/DerbyDao.java</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/controller/RatingController.java</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/web/WEB-INF/jsp/ratingView.jsp</file>
+            <file>file:/D:/web-prog/progi3/otthoni/szakikereso/szaki/src/java/com/szaki/controller/SearchController.java</file>
         </group>
     </open-files>
 </project-private>

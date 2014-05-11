@@ -7,6 +7,8 @@ package com.szaki.controller;
 
 import com.szaki.dao.DerbyDao;
 import com.szaki.domain.Rating;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -27,7 +29,7 @@ public class RatingController extends SimpleFormController {
         setCommandClass(Rating.class);
         setCommandName("ratingCommand");
         setSuccessView("ratingSuccessView");
-        setFormView("searchSuccesView");
+        setFormView("ratingView");
     }
 
     /*@Override
@@ -52,14 +54,17 @@ public class RatingController extends SimpleFormController {
 
         Rating rating = (Rating) command;
 
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        System.out.println(dateFormat.format(date));
+
         int mark = rating.getMark();
         String description = rating.getDescription();
         String sender = rating.getSender();
         String szaki = rating.getSzaki();
 
-        dao.createRating(mark, description, "2014.04.30", sender, szaki);
+        dao.createRating(mark, description, dateFormat.format(date), sender, szaki);
         ModelAndView mv = new ModelAndView(getSuccessView());
-        mv.addObject("rating", rating);
         return mv;
     }
 

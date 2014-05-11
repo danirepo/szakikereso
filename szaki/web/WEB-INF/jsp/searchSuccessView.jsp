@@ -24,7 +24,7 @@
             <c:if test="${item.profession3 != 'null'}">, <c:out value="${item.profession3}"/></c:if></p>
             <c:if test="${pageContext.request.userPrincipal.name != null}">
                 <sec:authorize access="hasRole('ROLE_USER')">
-                <a href="">Értékelés</a>
+                <a href="<c:url value="/ertekeles.htm" />" itemid="${item.email}" class="rating">Értékelés</a>
             </sec:authorize>
         </c:if>
     </c:forEach>

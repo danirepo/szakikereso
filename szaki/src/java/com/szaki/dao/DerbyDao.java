@@ -33,7 +33,7 @@ public class DerbyDao implements Dao {
     private List<Login> listOfLogin;
     private List<LoginRoles> listOfLoginRole;
     private List<Rating> listOfRating;
-    private int lastId;
+    private int lastId = 1;
     private static final String USER_ROLE = "ROLE_USER";
     private static final String SZAKI_ROLE = "ROLE_SZAKI";
 
