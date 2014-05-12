@@ -12,8 +12,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <%@include file="source.jsp" %>
     </head>
     <body>
+        <%@include file="header.jsp" %>
         <c:out value="${login}" />
         <h1>Keresés!</h1>
         <c:out value="${loggedUser}" />
