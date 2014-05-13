@@ -10,7 +10,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title><fmt:message key="szakiRegistrationView.title" /></title>
+        <%@include file="source.jsp" %>
         <style>
             .error {
                 color: #ff0000;
@@ -26,6 +27,7 @@
         </style>
     </head>
     <body>
+        <%@include file="header.jsp" %>
         <h1>Szakember regisztráció</h1>
         <p>Ha Ön értékelni szeretné a szakemberek válassza a <a href="<c:url value="/regisztracio.htm" />" >felhasználó regisztrációt</a></p>
         <spring:nestedPath path="szakiRegistration">
@@ -92,5 +94,6 @@
                 <input type="submit" value="Regisztráció" />
             </form:form>
         </spring:nestedPath>
+        <%@include file="footer.jsp" %>
     </body>
 </html>

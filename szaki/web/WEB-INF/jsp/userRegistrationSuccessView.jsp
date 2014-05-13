@@ -10,10 +10,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title><fmt:message key="userRegistrationSuccessView.title" /></title>
+        <%@include file="source.jsp" %>
     </head>
     <body>
+        <%@include file="header.jsp" %>
         <h1>Sikeres regisztráció</h1>
         <a href="<c:url value="/regisztracio.htm" />">Vissza</a>
+        <%@include file="footer.jsp" %>
     </body>
 </html>

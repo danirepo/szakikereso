@@ -24,7 +24,7 @@
             <p>
                 Ha bármiféle kérdése felmerül szolgáltatásunkkal kapcsolatban, kérjük vegye fel velünk a kapcsolatot.
             </p> <br>
-            <a href="mailto:ron23@gmail.com" class="subscribe">Email küldése</a>
+            <a href="" class="subscribe">Email küldése</a>
         </div>
     </div>
     <div id="footnote">

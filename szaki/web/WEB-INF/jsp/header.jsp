@@ -8,7 +8,7 @@
                 </div>
                 <div class="login">
                     <a href="<c:url value="/regisztracio.htm" />"><h1>Regisztráció</h1> </a>
-                    <a href="<c:url value="/login.htm" />"><h1>Belépés</h1> </a>
+                    <!--<a href="<c:url value="/login.htm" />"><h1>Belépés</h1> </a>-->
                     <c:if test="${pageContext.request.userPrincipal.name == null}">
                         <c:if test="${not empty error}">
                             <div class="error">${error}</div>

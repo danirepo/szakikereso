@@ -639,14 +639,14 @@ p a:hover {
 #footnote .connect a.pinterest {
     background-position: 0 -196px;
 }
-/*----MI ÍRTUK*/
 .login{
     width: auto;
     float: right;
     color: #ffffff;
     font: bold 13px/24px Times, "Times New Roman", serif;
     text-decoration: none;
-
+    padding-top: 37px;
+    margin-left: 20px;
 }
 
 .login a:link, .login a:visited, .login a:active{

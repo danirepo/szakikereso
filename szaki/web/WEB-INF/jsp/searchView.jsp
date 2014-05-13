@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title><fmt:message key="searchView.title" /></title>
         <%@include file="source.jsp" %>
     </head>
     <body>
@@ -49,5 +49,6 @@
             </spring:bind><br/>
             <input type="submit" value="keresés" />
         </form:form>
+        <%@include file="footer.jsp" %>
     </body>
 </html>

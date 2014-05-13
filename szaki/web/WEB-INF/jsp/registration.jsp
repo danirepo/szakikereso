@@ -10,10 +10,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title><fmt:message key="registration.title" /></title>
+        <%@include file="source.jsp" %>
     </head>
+    <body>
     <%@include file="header.jsp" %>
     <h1>Regisztráció</h1>
     <p>Ha Ön szakember akkor válassza a <a href="<c:url value="/szakiregisztracio.htm" />">szakember regisztrációt</a></p>
     <p>Ha Ön értékelni szeretné a szakemberek válassza a <a href="<c:url value="/regisztracio.htm" />" >felhasználó regisztrációt</a></p>
     <%@include file="footer.jsp" %>
+    </body>
+</html>

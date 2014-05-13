@@ -10,13 +10,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title><fmt:message key="szakiRegistrationSuccessView.title" /></title>
+        <%@include file="source.jsp" %>
     </head>
     <body>
+        <%@include file="header.jsp" %>
         <h1>Sikeres szakember regisztráció</h1>
         <c:forEach items="${szaki.profession}" var="prof">
             <p><c:out value="${prof}"/></p>
         </c:forEach>
         <a href="<c:url value="/szakiregisztracio.htm"/>">Vissza</a>
+        <%@include file="footer.jsp" %>
     </body>
 </html>

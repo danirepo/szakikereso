@@ -10,10 +10,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title><fmt:message key="ratingView.title" /></title>
         <%@include file="source.jsp" %>
     </head>
     <body>
+        <%@include file="header.jsp" %>
         <h1>Értékelés</h1>
         <form:form commandName="ratingCommand" method="post">
             <spring:bind path="mark">
@@ -30,5 +31,6 @@
             </spring:bind>
             <input type="submit" value="küldés"/>
         </form:form>
+        <%@include file="footer.jsp" %>
     </body>
 </html>
