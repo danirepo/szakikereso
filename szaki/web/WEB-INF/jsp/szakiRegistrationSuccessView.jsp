@@ -4,7 +4,7 @@
     Author     : Dani
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="include.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,13 +13,8 @@
         <title><fmt:message key="szakiRegistrationSuccessView.title" /></title>
         <%@include file="source.jsp" %>
     </head>
-    <body>
-        <%@include file="header.jsp" %>
-        <h1>Sikeres szakember regisztráció</h1>
-        <c:forEach items="${szaki.profession}" var="prof">
-            <p><c:out value="${prof}"/></p>
-        </c:forEach>
-        <a href="<c:url value="/szakiregisztracio.htm"/>">Vissza</a>
-        <%@include file="footer.jsp" %>
-    </body>
-</html>
+    <%@include file="header.jsp" %>
+    <h1>Sikeres szakember regisztráció</h1>
+    <a href="<c:url value="/index.htm"/>">Kezdőoldal</a>
+    <%@include file="footer.jsp" %>
+

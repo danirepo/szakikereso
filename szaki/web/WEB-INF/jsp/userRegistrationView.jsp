@@ -13,37 +13,38 @@
         <title><fmt:message key="userRegistrationView.title" /></title>
         <%@include file="source.jsp" %>
     </head>
-    <body>
-        <%@include file="header.jsp" %>
-        <h1>Regisztráció</h1>
-        <p>Ha Ön szakember akkor válassza a <a href="<c:url value="/szakiregisztracio.htm" />">szakember regisztrációt</a></p>
+    <%@include file="header.jsp" %>
+    <div class="content sixteen columns">
+    <h1>Regisztráció</h1>
+    <p>Ha Ön szakember akkor válassza a <a href="<c:url value="/szakiregisztracio.htm" />">szakember regisztrációt</a></p>
+    
         <spring:nestedPath path="userRegistration">
             <form:form commandName="userRegistration" method="POST">
                 <form:errors path="*" cssClass="errorblock" element="div" />
-                Vezetéknév:
+                <label>Vezetéknév:</label>
                 <spring:bind path="lastName">
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="Vezetéknév" />
-                </spring:bind>
-                Keresztnév:
+                </spring:bind><br>
+                <label>Keresztnév:</label>
                 <spring:bind path="firstName">
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="Keresznév" />
                     <form:errors path="firstName" cssClass="error" />
-                </spring:bind>
-                E-mail:
+                </spring:bind><br>
+                <label>E-mail:</label>
                 <spring:bind path="email">
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="E-mail" />
-                </spring:bind>
-                Jelszó:
+                </spring:bind><br>
+                <label>Jelszó:</label>
                 <spring:bind path="password">
                     <input type="password" name="${status.expression}" value="${status.value}" placeholder="Jelszó" />
-                </spring:bind>
-                Jelszó megerősitése:
+                </spring:bind><br>
+                <label>Jelszó megerősitése:</label>
                 <spring:bind path="password2">
                     <input type="password" name="${status.expression}" value="${status.value}" placeholder="Jelszó" />
-                </spring:bind>
+                </spring:bind><br>
                 <input type="submit" value="Regisztráció" />
             </form:form>
         </spring:nestedPath>
-        <%@include file="footer.jsp" %>
-    </body>
-</html>
+    </div>
+    <%@include file="footer.jsp" %>
+

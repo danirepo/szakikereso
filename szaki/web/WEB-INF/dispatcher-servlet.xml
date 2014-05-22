@@ -15,13 +15,11 @@
       
     <!--<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>-->
     
-   
-    
-    
     <mvc:annotation-driven />
     <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
     <mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
     <mvc:resources mapping="/images/**" location="/WEB-INF/images/" />
+    <mvc:resources mapping="/music/**" location="/WEB-INF/music/" />
     
     <bean name="/regisztracio.htm" class="com.szaki.controller.UserRegistrationController">
         <property name="validator">
@@ -33,8 +31,7 @@
         <property name="validator">
             <bean class="com.szaki.validator.SzakiValidator" />
         </property>
-    </bean>
-    
+    </bean>    
     
     <bean name="/kereses.htm" class="com.szaki.controller.SearchController" />
     
@@ -42,13 +39,7 @@
         <property name="validator">
             <bean class="com.szaki.validator.RatingValidator" />
         </property>
-    </bean>
-    
-    <!--<bean class="com.szaki.controller.LoginController">
-        <property name="validator">
-            <bean class="com.szaki.validator.LoginValidator"/>
-        </property>        
-    </bean>-->
+    </bean>    
     
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="/WEB-INF/properties/message"></property>
@@ -82,5 +73,17 @@
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
+    
+    <bean id="introMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="intro.htm">introController</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean name="introController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="intro" />
 
 </beans>

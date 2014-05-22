@@ -13,24 +13,25 @@
         <title><fmt:message key="ratingView.title" /></title>
         <%@include file="source.jsp" %>
     </head>
-    <body>
-        <%@include file="header.jsp" %>
+    <%@include file="header.jsp" %>
+    <div class="content sixteen columns">
         <h1>Értékelés</h1>
-        <form:form commandName="ratingCommand" method="post">
+        <form:form commandName="ratingCommand" method="post" id="rating">
+            <label>Osztályzat:</label>
             <spring:bind path="mark">
-                <input type="number" min="1" max="5" name="${status.expression}" />
-            </spring:bind>
+                <input type="number" min="1" max="5" value="5" name="${status.expression}" />
+            </spring:bind><br>
+            <label>Leírás:</label>
             <spring:bind path="description">
-                <textarea name="${status.expression}"></textarea>
-            </spring:bind>
+                <textarea name="${status.expression}" placeholder="Leírás"></textarea>
+            </spring:bind><br>
             <spring:bind path="sender">
                 <input type="hidden" name="sender" value="${pageContext.request.userPrincipal.name}" />
             </spring:bind>
             <spring:bind path="szaki">
                 <input type="hidden" name="szaki" class="szaki" />
             </spring:bind>
-            <input type="submit" value="küldés"/>
+            <input type="submit" value="Küldés"/>
         </form:form>
-        <%@include file="footer.jsp" %>
-    </body>
-</html>
+    </div>
+    <%@include file="footer.jsp" %>

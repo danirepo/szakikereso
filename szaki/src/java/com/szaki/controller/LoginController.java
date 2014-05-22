@@ -49,7 +49,7 @@ public class LoginController {
             modelAndView.addObject("error", "Rossz email vagy jelszó!");
         }
         if (logout != null) {
-            modelAndView.addObject("msg", "Sikeresen kijelentkeztél");
+            modelAndView.addObject("msg", "Sikeresen kijelentkezet");
         }
 
         modelAndView.setViewName("index");

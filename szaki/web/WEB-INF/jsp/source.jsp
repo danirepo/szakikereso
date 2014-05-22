@@ -4,3 +4,5 @@
 <script type="text/javascript" src="<c:url value="/js/jquery.session.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/js/main.js" />"></script>
 <link rel="stylesheet" href="<c:url value="/css/style.css"/>" type="text/css" />
+<link rel="stylesheet" href="<c:url value="/css/grid.css"/>" type="text/css" />
+<link rel="stylesheet" href="<c:url value="/css/animation.css"/>" type="text/css" />

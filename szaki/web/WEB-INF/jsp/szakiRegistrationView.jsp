@@ -26,74 +26,75 @@
             }
         </style>
     </head>
-    <body>
-        <%@include file="header.jsp" %>
+    <%@include file="header.jsp" %>
+    <div class="content sixteen columns">
         <h1>Szakember regisztráció</h1>
         <p>Ha Ön értékelni szeretné a szakemberek válassza a <a href="<c:url value="/regisztracio.htm" />" >felhasználó regisztrációt</a></p>
         <spring:nestedPath path="szakiRegistration">
             <form:form commandName="szakiRegistration" method="POST">
                 <form:errors path="*" cssClass="errorblock" element="div"></form:errors>
-                    Vezetéknév:
+                <label>Vezetéknév:</label>
                 <spring:bind path="lastName">
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="Vezetéknév" /><br />
                 </spring:bind>
-                Keresztnév:
+                <label>Keresztnév:</label>
                 <spring:bind path="firstName">
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="Keresztnév" /><br />
                 </spring:bind>
-                Vállakozás neve:
+                <label>Vállakozás neve:</label>
                 <spring:bind path="nameOfCompany">
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="Vállalkozás neve" /><br />
                 </spring:bind>
-                E-mail
+                <label>E-mail:</label>
                 <spring:bind path="email">
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="E-mail" /><br />
                 </spring:bind>
-                Telefonszám:
+                <label>Telefonszám:</label>
                 <spring:bind path="phone">
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="30/123-4567" /> pl.: 30/123-4567<br />
                 </spring:bind>
-                Szakma:
+                <label>Szakma:</label>
+                <div class="profession">
                 <c:forEach items="${professionsList}" var="prof">
-                    <form:checkbox path="profession" id="${prof.id}" value="${prof.id}" label="${prof.name}" />
-                </c:forEach><br />
-                Ország:
+                    <form:checkbox path="profession" id="${prof.id}" value="${prof.id}" label="${prof.name}" /><br />
+                </c:forEach><br /></div>
+                <div class="clear"></div>
+                <label>Ország:</label>
                 <spring:bind path="country">
                     <select name="${status.expression}">
                         <option value="Magyar" selected="selected">Magyar</option>
                         <option value="Svéd">Svéd</option>
                     </select><br />
                 </spring:bind>
-                Megye:
+                <label>Megye:</label>
                 <spring:bind path="county">
                     <select name="${status.expression}">
                         <option value="Baranya" selected="selected">Baranya</option>
                         <option value="Békés">Békés</option>
                     </select><br />
                 </spring:bind>
-                Város:
+                <label>Város:</label>
                 <spring:bind path="city">
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="Város" /><br />
                 </spring:bind>
-                Utca:
+                <label>Utca:</label>
                 <spring:bind path="street">
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="Utca" /><br />
                 </spring:bind>
-                Házszám:
+                <label>Házszám:</label>
                 <spring:bind path="number">
                     <input type="text" name="${status.expression}" value="${status.value}" placeholder="Házszám" /><br />
                 </spring:bind>
-                Jelszó:
+                <label>Jelszó:</label>
                 <spring:bind path="password">
                     <input type="password" name="${status.expression}" value="${status.value}" placeholder="Jelszó" /><br />
                 </spring:bind>
-                Jelszó:
+                <label>Jelszó:</label>
                 <spring:bind path="password2">
                     <input type="password" name="${status.expression}" value="${status.value}" placeholder="Jelszó" /><br />
                 </spring:bind>
                 <input type="submit" value="Regisztráció" />
             </form:form>
         </spring:nestedPath>
-        <%@include file="footer.jsp" %>
-    </body>
-</html>
+    </div>
+    <%@include file="footer.jsp" %>

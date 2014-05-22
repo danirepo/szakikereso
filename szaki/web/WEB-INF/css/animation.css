@@ -1,0 +1,78 @@
+@keyframes pulse {
+    0% {
+        width: 50%;
+        height: 50%;
+    }
+    50% {
+        width: 60%;
+        height: 60%;
+    }
+    100% {
+        width: 50%;
+        height: 50%;
+    }
+}
+
+@-o-keyframes pulse {
+    0% {
+        width: 50%;
+        height: 50%;
+    }
+    50% {
+        width: 60%;
+        height: 60%;
+    }
+    100% {
+        width: 50%;
+        height: 50%;
+    }
+}
+
+@-moz-keyframes pulse {
+    0% {
+        width: 50%;
+        height: 50%;
+    }
+    50% {
+        width: 60%;
+        height: 60%;
+    }
+    100% {
+        width: 50%;
+        height: 50%;
+    }
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        width: 50%;
+        height: 50%;
+    }
+    50% {
+        width: 60%;
+        height: 60%;
+    }
+    100% {
+        width: 50%;
+        height: 50%;
+    }
+}
+
+.pulsing {
+    -webkit-animation-name: pulse;
+    -moz-animation-name: pulse;
+    -o-animation-name: pulse;
+    animation-name: pulse;
+    -webkit-animation-duration: 3s;
+    -moz-animation-duration: 3s;
+    -o-animation-duration: 3s;
+    animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -o-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -o-animation-timing-function: linear;
+    animation-timing-function: linear;
+}

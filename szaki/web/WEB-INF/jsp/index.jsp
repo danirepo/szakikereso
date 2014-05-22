@@ -11,63 +11,33 @@
     </head>
 
     <%@include file="header.jsp" %>
-    <div id="contents">
-        <div id="adbox">
-            <div class="clearfix">
-                <img class ="workers" src="<c:url value="/images/handyman_on_ladder.png" />">
-                <img class="szoveg" src="images/szoveg.png" width="500" height="400">
-            </div>
+    <div class="text sixteen columns">
+        <img src="images/advers.png" alt="Reklám szöveg" title="Reklám szöveg"/>
+        <img src="images/handymanOnLadder.png" alt="Szerelő" title="Szerelő"/>
+    </div>
+    <div class="clear"></div>
+    <div class="boxes">
+        <h2>Miért minket válasszon!</h2>
+        <div class="four columns box">
+            <img src="images/bag.png" alt="szerszámtáska" title="szerszámtáska" class="shadow"/>
+            <h3>Sokszínűség</h3>
+            <p>Adatbázisunkban sokfajta foglalkozást megtalálsz.</p>
         </div>
-        <div class="featured">
-            <h2>Miért minket válassz?</h2>
-            <ul class="clearfix">
-                <li>
-                    <div class="frame1">
-                        <div class="box">
-                            <img src="images/meeting.jpg" alt="Img" height="130" width="197">
-                        </div>
-                    </div>
-                    <p>
-                        <b>Sokszínűség</b> Adatbázisunkban sokfajta foglalkozást megtalálsz.
-                    </p> <br><br>
-                    <a href="search.html" target="_blank" class="more">Keresés</a>
-                </li>
-                <li>
-                    <div class="frame1">
-                        <div class="box">
-                            <img src="images/handshake.jpg" alt="Img" height="130" width="197">
-                        </div>
-                    </div>
-                    <p>
-                        <b>Pontosság</b> A keresett személy gyors kiválasztása különböző
-                        szűrők segítségével.
-                    </p><br>
-                    <a href="index.html" class="more">Szakemberek</a>
-                </li>
-                <li>
-                    <div class="frame1">
-                        <div class="box">
-                            <img src="images/smile.jpg" alt="Img" height="130" width="197">
-                        </div>
-                    </div>
-                    <p>
-                        <b>Biztonság</b> A személyes adatok védelme, biztonságos tárolása.
-                    </p> <br><br>
-                    <a href="registration.html" target="_blank" class="more"> Regisztáció </a>
-                </li>
-                <li>
-                    <div class="frame1">
-                        <div class="box">
-                            <img src="images/family-small.jpg" alt="Img" height="130" width="197">
-                        </div>
-                    </div>
-                    <p>
-                        <b>Értékelések, vélemények</b> Minden munkavállalót értékelhetsz az elvégzett
-                        munka alapján.
-                    </p><br>
-                    <a href="index.html" class="more">Értékelések</a>
-                </li>
-            </ul>
+        <div class="four columns box">
+            <img src="images/handyman.png" alt="szakember" title="szakember" class="shadow"/>
+            <h3>Pontosság</h3>
+            <p>A keresett személy gyors kiválasztása különböző szűrők segítségével.</p>
+        </div>
+        <div class="four columns box">
+            <img src="images/helmet.png" alt="sisak" title="sisak" class="shadow"/>
+            <h3>Biztonság</h3>
+            <p>A személyes adatok védelme, biztonságos tárolása.</p>
+        </div>
+        <div class="four columns box">
+            <img src="images/star.png" alt="csillag" title="csillag" class="shadow"/>
+            <h3>Értékelések</h3>
+            <p>Minden munkavállalót értékelhetsz az elvégzett munka alapján.</p>
         </div>
     </div>
+    <div class="clear"></div>
     <%@include file="footer.jsp" %>

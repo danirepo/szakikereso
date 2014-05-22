@@ -14,31 +14,29 @@
         <title><fmt:message key="searchView.title" /></title>
         <%@include file="source.jsp" %>
     </head>
-    <body>
-        <%@include file="header.jsp" %>
-        <c:out value="${login}" />
+    <%@include file="header.jsp" %>
+    <div class="content sixteen columns">
         <h1>Keresés!</h1>
-        <c:out value="${loggedUser}" />
         <form:form commandName="searching" method="POST">
-            Ország:
+            <label>Ország:</label>
             <spring:bind path="country">
                 <select name="${status.expression}">
                     <option value="Magyar" selected="selected">Magyar</option>
                     <option value="Svéd">Svéd</option>
-                </select><br />
+                </select>
             </spring:bind>
-            Megye:
+            <label>Megye:</label>
             <spring:bind path="county">
                 <select name="${status.expression}">
                     <option value="Baranya" selected="selected">Baranya</option>
                     <option value="Békés">Békés</option>
-                </select><br />
+                </select>
             </spring:bind>
-            Szakma:
+            <label>Szakma:</label>
             <%--<spring:bind path="*">                
                 <c:forEach items="${listOfProfessions}" var="prof">                    
                     <form:checkbox path="profession" id="${prof.id}" value="${prof.id}" label="${prof.name}" />
-                </c:forEach><br/>
+                </c:forEach>
             </spring:bind>--%>
             <spring:bind path="profession">
                 <form:select path="profession">
@@ -46,9 +44,8 @@
                         <form:option value="${prof.id}"><c:out value="${prof.name}"/></form:option>
                     </c:forEach>
                 </form:select>
-            </spring:bind><br/>
+            </spring:bind>
             <input type="submit" value="keresés" />
         </form:form>
-        <%@include file="footer.jsp" %>
-    </body>
-</html>
+    </div>
+    <%@include file="footer.jsp" %>
