@@ -23,7 +23,7 @@
                 <p class="profession"><c:if test="${item.profession != 'null'}"><c:out value=" ${item.profession}"/></c:if><c:if test="${item.profession2 != 'null'}">, <c:out value="${item.profession2}"/></c:if><c:if test="${item.profession3 != 'null'}">, <c:out value="${item.profession3}"/></c:if></p>
                     <p>Elérhetőségek:</p>
                             <p class="phone">Telefonszám: <c:out value="${item.phone}"/><br> E-mail: <c:out value="${item.email}"/><br>
-                    Cím: <c:out value="${item.city}"/>, <c:out value="${item.street}"/> <c:out value="${item.number}"/>.</p>
+                    Cím: <c:out value="${item.county}"/> megye <c:out value="${item.city}"/>, <c:out value="${item.street}"/> <c:out value="${item.number}"/>.</p>
                     <p>Értékelések:</p>
                     <div class="clear"></div>
 

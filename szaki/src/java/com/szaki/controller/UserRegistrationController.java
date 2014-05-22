@@ -10,6 +10,7 @@ import com.szaki.domain.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.validation.BindException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.SimpleFormController;
@@ -48,8 +49,9 @@ public class UserRegistrationController extends SimpleFormController {
 
         User user = (User) command;
 //        System.out.println(user.getFirstName() + "," + user.getLastName() + "," + user.getEmail() + "," + user.getPassword());
-
-        dao.createUser(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
+        Md5PasswordEncoder md5 = new Md5PasswordEncoder();
+        String password = md5.encodePassword(user.getPassword(), null);
+        dao.createUser(user.getFirstName(), user.getLastName(), user.getEmail(), password);
 
         ModelAndView mv = new ModelAndView(getSuccessView());
 
