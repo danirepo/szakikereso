@@ -41,6 +41,10 @@
         </property>
     </bean>    
     
+    <bean name="/userModify.htm" class="com.szaki.controller.AdminUserController"></bean>
+    
+    <bean name="/szakiModify.htm" class="com.szaki.controller.AdminSzakiController"></bean>
+    
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="basename" value="/WEB-INF/properties/message"></property>
     </bean>

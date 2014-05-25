@@ -15,6 +15,7 @@
     </head>
 
     <%@include file="header.jsp" %>
+    
     <div class="content sixteen columns">
         <h1>Találati lista</h1>
         <c:forEach items="${foundList}" var="item">

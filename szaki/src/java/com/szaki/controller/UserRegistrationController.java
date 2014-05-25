@@ -22,9 +22,6 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 public class UserRegistrationController extends SimpleFormController {
 
     public UserRegistrationController() {
-        //Initialize controller properties here or 
-        //in the Web Application Context
-
         setCommandClass(User.class);
         setCommandName("userRegistration");
         setSuccessView("userRegistrationSuccessView");

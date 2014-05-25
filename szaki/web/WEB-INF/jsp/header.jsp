@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <body>
     <div class="container">
@@ -37,8 +38,8 @@
                             document.getElementById("logoutForm").submit();
                         }
                     </script>
-                    <p>Sikeresen bejelentkezett! | <a
-                            href="javascript:formSubmit()"> Kijelenkezés</a></p>
+                    <p>Sikeresen bejelentkezett! | <a href="javascript:formSubmit()"> Kijelenkezés</a></p>
+
                 </c:if>
             </div>
         </div>
@@ -48,6 +49,12 @@
                 <li><a href="<c:url value="/index.htm" />">Kezdőoldal</a></li>
                 <li><a href="<c:url value="/kereses.htm" />">Keresés</a></li>
                 <li><a href="<c:url value="/regisztracio.htm" />">Regisztráció</a></li>
+                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                    <li><a href="<c:url value="/userModify.htm" />">admin</a></li>
+                </sec:authorize>
+                <sec:authorize access="hasRole('ROLE_USER')">
+                    <li><a href="<c:out value="/profil.htm" />">Profil</a></li>
+                </sec:authorize>
             </ul>
         </div>
         <div class="clear"></div>

@@ -11,27 +11,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <%@include file="source.jsp" %>
     </head>
-    <body>
+    <%@include file="header.jsp" %>
+
+    <div class="content sixteen columns">
         <h1>Title : ${title}</h1>
         <h1>Message : ${message}</h1>
 
-        <c:url value="/j_spring_security_logout" var="logoutUrl" />
-        <form action="${logoutUrl}" method="post" id="logoutForm">
-            <input type="hidden" name="${_csrf.parameterName}"
-                   value="${_csrf.token}" />
-        </form>
-        <script>
-            function formSubmit() {
-                document.getElementById("logoutForm").submit();
-            }
-        </script>
 
-        <c:if test="${pageContext.request.userPrincipal.name != null}">
-            <h2>
-                Welcome : ${pageContext.request.userPrincipal.name} | <a
-                    href="javascript:formSubmit()"> Logout</a>
-            </h2>
-        </c:if>
-    </body>
-</html>
+        <c:forEach items="${listOfUser}" var="user">
+            <c:if test="${user.email == pageContext.request.userPrincipal.name}">
+                <p>Ez az emailje: <c:out value="${user.email}" /></p>
+            </c:if>
+        </c:forEach>
+
+
+    </div>
+    <%@include file="footer.jsp" %>
