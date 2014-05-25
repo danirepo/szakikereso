@@ -50,10 +50,6 @@ public class LoginController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/profile**", method = RequestMethod.POST)
-    public ModelAndView onSubmit() {
-        return null;
-    }
 
     @RequestMapping(value = "/index.htm", method = RequestMethod.GET)
     public ModelAndView login(@RequestParam(value = "error", required = false) String error,

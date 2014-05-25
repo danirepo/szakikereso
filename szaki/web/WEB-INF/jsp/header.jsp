@@ -53,7 +53,7 @@
                     <li><a href="<c:url value="/userModify.htm" />">admin</a></li>
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_USER')">
-                    <li><a href="<c:out value="/profil.htm" />">Profil</a></li>
+                    <li><a href="<c:url value="/profile.htm" />">Profil</a></li>
                 </sec:authorize>
             </ul>
         </div>

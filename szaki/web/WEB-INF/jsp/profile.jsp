@@ -16,16 +16,8 @@
     <%@include file="header.jsp" %>
 
     <div class="content sixteen columns">
-        <h1>Title : ${title}</h1>
-        <h1>Message : ${message}</h1>
-
-
-        <c:forEach items="${listOfUser}" var="user">
-            <c:if test="${user.email == pageContext.request.userPrincipal.name}">
-                <p>Ez az emailje: <c:out value="${user.email}" /></p>
-            </c:if>
-        </c:forEach>
-
+        <h1>Profil</h1>
+        <p>Fejlesztés alatt!</p>
 
     </div>
     <%@include file="footer.jsp" %>

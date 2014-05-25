@@ -44,7 +44,7 @@ public class AdminSzakiController extends SimpleFormController {
     protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response,
                                     Object command, BindException errors) throws Exception {
         Szaki szaki = (Szaki) command;
-        String deleteSql = "DELETE FROM users WHERE email='" + szaki.getEmail() + "'";
+        String deleteSql = "DELETE FROM szaki WHERE email='" + szaki.getEmail() + "'";
         dao.delete(deleteSql);
         ModelAndView mv = new ModelAndView(getSuccessView());
         //Do something...

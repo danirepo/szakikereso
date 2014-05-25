@@ -222,7 +222,7 @@ h3{
 }
 
 .content .handyman{
-    margin: 0 0 30px 0;
+    margin: 0;
 }
 
 .content .handyman p.profession{
@@ -233,10 +233,10 @@ h3{
     margin: 5px 15px 20px 15px;
 }
 
-.content .handyman .rating{
-    width: 540px;
-    float: left;
-    margin: 10px 0;
+.content .rating{
+    
+    /*float: left;
+    margin: 10px 0;*/
     padding: 10px 0;
     border-radius: 10px 0px;
     -moz-border-radius: 10px 0px;
@@ -245,13 +245,39 @@ h3{
     -moz-box-shadow: 4px 4px 10px #c6c6c6;
 }
 
-.content .handyman .rating p.sender{
-    margin-bottom: 5px;
+.content .rating p.sender{
+    margin: 0 0 5px 10px;
+    width: 350px;
+    float: left;
 }
 
-.content .handyman .rating p.date{
+.content .rating p.date{
     text-align: right;
-    margin-bottom: 5px;
+    margin: 0 10px 5px 0;
+    width: 90px;
+    float: left;
+}
+
+.content .rating p.mark, .content .rating p.description{
+    width: 440px;
+    margin: 0 10px 5px 10px;
+}
+
+.content .ratingButton{
+    background: url("../images/ratingBoxBg.png") repeat;
+    padding: 5px 10px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    display: block;
+    float: left;
+    margin: 15px 10px 10px 10px;
+    box-shadow: 4px 4px 10px #c6c6c6;
+    -moz-box-shadow: 4px 4px 10px #c6c6c6;
+    text-decoration: none;
+}
+
+.content .ratingButton:hover{
+    text-decoration: underline;
 }
 
 .content form#rating{

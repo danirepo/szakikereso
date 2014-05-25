@@ -92,7 +92,9 @@ public class SearchController extends SimpleFormController {
             String noFound = "Nincs találat";
             return new ModelAndView("searchSuccessView", "notFound", noFound);
         } else {
+            ModelAndView modelAndView = new ModelAndView(getSuccessView());
             professionModify();
+
             for (Rating ratingItem : ratingList) {
                 for (User userItem : userList) {
                     if (ratingItem.getSender().equals(userItem.getEmail())) {
@@ -100,9 +102,10 @@ public class SearchController extends SimpleFormController {
                     }
                 }
             }
-            ModelAndView modelAndView = new ModelAndView(getSuccessView());
-            modelAndView.addObject("foundList", foundList);
+
             modelAndView.addObject("ratingList", ratingList);
+            modelAndView.addObject("foundList", foundList);
+
             return modelAndView;
             //return new ModelAndView("searchSuccessView", "foundList", foundList);
 

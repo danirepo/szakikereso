@@ -237,6 +237,11 @@ public class DerbyDao implements Dao {
                     hasFound = true;
                 }
             }
+            
+            if (loginItem.getEmail().equals("admin@admin.hu")) {
+                hasFound = true;
+            }
+            
             if (hasFound == false) {
                 for (Szaki szakiItem : listOfSzaki) {
                     if (loginItem.getEmail().equals(szakiItem.getEmail())) {
@@ -244,6 +249,7 @@ public class DerbyDao implements Dao {
                     }
                 }
             }
+            
             if (hasFound == false) {
                 delete("delete from boss.login where email='" + loginItem.getEmail() + "'");
                 delete("delete from boss.login_roles where email='" + loginItem.getEmail() + "'");

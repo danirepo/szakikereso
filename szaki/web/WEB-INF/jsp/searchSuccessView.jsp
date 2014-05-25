@@ -15,39 +15,39 @@
     </head>
 
     <%@include file="header.jsp" %>
-    
-    <div class="content sixteen columns">
+
+    <div class="content">
         <h1>Találati lista</h1>
         <c:forEach items="${foundList}" var="item">
-            <div class="handyman">
+            <div class="handyman sixteen columns">
                 <h2><c:out value="${item.lastName}" />&nbsp;<c:out value="${item.firstName}" /></h2>
                 <p class="profession"><c:if test="${item.profession != 'null'}"><c:out value=" ${item.profession}"/></c:if><c:if test="${item.profession2 != 'null'}">, <c:out value="${item.profession2}"/></c:if><c:if test="${item.profession3 != 'null'}">, <c:out value="${item.profession3}"/></c:if></p>
                     <p>Elérhetőségek:</p>
                             <p class="phone">Telefonszám: <c:out value="${item.phone}"/><br> E-mail: <c:out value="${item.email}"/><br>
                     Cím: <c:out value="${item.county}"/> megye <c:out value="${item.city}"/>, <c:out value="${item.street}"/> <c:out value="${item.number}"/>.</p>
-                    <p>Értékelések:</p>
-                    <div class="clear"></div>
-
-
-                <c:forEach items="${ratingList}" var="ratingItem">
-                    <c:if test="${item.email == ratingItem.szaki}">
-                        <div class="rating">
-                            <p class="six columns sender">Beküldő: <c:out value="${ratingItem.sender}"/></p>
-                            <p class="three columns date"><c:out value="${ratingItem.date}"/></p>
-                            <p class="two columns mark">Osztályzat: <c:out value="${ratingItem.mark}"/></p>
-                            <p class="seven columns description"><c:out value="${ratingItem.description}"/></p>
-                        </div>
-                        <div class="clear"></div>
-                    </c:if>
-                </c:forEach>
-
-                <c:if test="${pageContext.request.userPrincipal.name != null}">
-                    <sec:authorize access="hasRole('ROLE_USER')">
-                        <a href="<c:url value="/ertekeles.htm" />" itemid="${item.email}" class="rating">Értékelem</a>
-                    </sec:authorize>
-
-                </c:if>
+                <p>Értékelések:</p>
             </div>
+            <div class="clear"></div>
+
+            <c:forEach items="${ratingList}" var="ratingItem">
+                <c:if test="${item.email == ratingItem.szaki}">
+                    <div class="rating eight columns">
+                        <p class="sender">Beküldő: <c:out value="${ratingItem.sender}"/></p>
+                        <p class="date"><c:out value="${ratingItem.date}"/></p>
+                        <p class="mark">Osztályzat: <c:out value="${ratingItem.mark}"/></p>
+                        <p class="description"><c:out value="${ratingItem.description}"/></p>
+                    </div>
+                </c:if>
+            </c:forEach>
+            <div class="clear"></div>
+
+            <c:if test="${pageContext.request.userPrincipal.name != null}">
+                <sec:authorize access="hasRole('ROLE_USER')">
+                    <a href="<c:url value="/ertekeles.htm" />" itemid="${item.email}" class="ratingButton">Értékelem</a>
+                </sec:authorize>
+
+            </c:if>
+
             <div class="clear"></div>
         </c:forEach>
         <p><c:out value="${notFound}"/></p>
